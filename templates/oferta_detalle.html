@@ -1,0 +1,92 @@
+<?php 
+//print("<pre>".print_r($_SESSION['oferta'],true)."</pre><br>"); 
+$id_oferta = $_SESSION['oferta']['id_oferta'];
+$nombre_oferta = $_SESSION['oferta']['nombre_oferta'];
+$descripcion = $_SESSION['oferta']['descripcion'];
+$fecha_oferta = $_SESSION['oferta']['fecha_oferta'];
+$comentarios = $_SESSION['oferta']['comentarios'];
+$url_documento = $_SESSION['oferta']['url_documento'];
+$id_proyecto = $_SESSION['oferta']['id_proyecto'];
+$tipo_proyecto = $_SESSION['oferta']['tipo_proyecto'];
+
+$id_tipo_persona = $_SESSION['persona'][0]['id_tipo_persona']
+?>
+<!--************************
+CONTENIDO DEL INFORME
+*****************************-->
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-6 ">
+        <h2>Detalle de la oferta con ID: <?= $id_oferta ?></h2> 
+        <h2><?= $template ?></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p> 
+    </div>
+</div><!--//ROW-->
+<hr>
+<?php if($id_tipo_persona == 3){ ?>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <hgroup>
+                <h6>Oferta</h6>
+                <h5><?php print_r($nombre_oferta) ?></h5>
+            </hgroup> 
+            <p><?php print_r($tipo_proyecto.' - '.$comentarios) ?></p>
+            <p><?php print_r($descripcion) ?></p>
+            <p>Publicado en <?php 
+                $date = strtotime($fecha_oferta);
+                $newformat = date('l jS \of F Y h:i:s A',$date);
+                print_r($newformat); ?></p>
+            <div class="footer-oferta ">
+                <hr>
+                <ul class="d-flex justify-content-between align-items-center">
+                    <!-- <li><a href="javascript:;" onclick="solicitarOferta()" class="btn btn-default btn-sm">Solicitar</a></li> -->
+                    <button type="submit" form="formSolicitarOferta" class="btn btn-default btn-sm">Solicitar</button>
+                    <form action="solicitar_oferta" id="formSolicitarOferta" method="post">
+                        <input type="text" name="id_oferta" value="<?= $id_oferta ?>" hidden>
+                        <input type="text" name="id_usuario" value="<?= $id_usuario ?>" hidden>
+                        <input type="text" name="id_persona" value="<?= $id_persona ?>" hidden>
+                        
+                    </form>
+                </ul>
+            </div><!--//FOOTER-OFERTA-->                   
+        </div><!--//CARD-BODY-->
+    </div><!--//CARD--> 
+</div><!--//COL-->
+<?php } ?>
+
+<?php if($id_tipo_persona == 2){ ?>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <hgroup>
+                    <h6>Oferta</h6>
+                    <h5><?php print_r($nombre_oferta) ?></h5>
+                </hgroup> 
+                <p><?php print_r($tipo_proyecto.' - '.$comentarios) ?></p>
+                <p><?php print_r($descripcion) ?></p>
+                <p>Publicado en <?php 
+                    $date = strtotime($fecha_oferta);
+                    $newformat = date('l jS \of F Y h:i:s A',$date);
+                    print_r($newformat); ?></p>
+                <div class="footer-oferta ">
+                    <hr>
+                    <ul class="d-flex justify-content-between align-items-center">
+                        <li><button form="formEditarOferta" class="btn btn-default btn-sm">Editar</button></li>
+                        <!-- <button type="submit" form="formEditarOferta" class="btn btn-default btn-sm">Editar</button>-->
+                        <form action="oferta_editar" id="formEditarOferta" method="post">
+                            <input type="text" name="id_oferta" value="<?= $id_oferta ?>" hidden>
+                            <input type="text" name="id_usuario" value="<?= $id_usuario ?>" hidden>
+                            <input type="text" name="id_persona" value="<?= $id_persona ?>" hidden>
+                        </form> 
+                    </ul>
+                </div><!--//FOOTER-OFERTA-->                   
+            </div><!--//CARD-BODY-->
+        </div><!--//CARD--> 
+    </div><!--//COL-->
+    <?php } ?>
+
+    <!--************************
+    FIN CONTENIDO DEL INFORME
+*****************************-->
+

@@ -1,0 +1,121 @@
+
+  <main class="container">
+    <div class="pt-5">
+        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+      <hr>
+        <?php foreach($estados as $e): ?>
+      <div class="estados-list d-flex justify-content-between align-items-center mb-3">
+        <div class="estados-id">
+          <a href="estados/<?= $e['id_estado'] ?>" class="" data-bs-toggle="modal"
+            data-bs-target="#editModal<?= $e['id_estado'] ?>">
+            <span>
+              <?= $e['id_estado'] ?>
+            </span>
+            <p></p>
+          </a>
+        </div>
+        <div class="estados-nombre">
+          <span>
+            <?= $e['nombre_estado'] ?>
+          </span>
+          <p></p>
+        </div>
+        <div class="estados-descripcion">
+          <span>
+            <?= $e['descripcion_estado'] ?>
+          </span>
+          <p></p>
+        </div>
+        <div class="estados-tabla">
+          <span>
+            <?= $e['tabla'] ?>
+          </span>
+          <p></p>
+        </div>
+        <div class="estados-delete">
+          <a href="estados/<?= $e['id_estado'] ?>" class="" data-bs-toggle="modal"
+            data-bs-target="#deleteModal<?= $e['id_estado'] ?>">
+          Delete <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+        <form action="estados/delete/<?= $e['id_estado'] ?>" method="post">
+        <div class="modal fade" id="deleteModal<?= $e['id_estado'] ?>" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body text-center">
+                <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar este estado?
+                </h5>
+                <hr>
+                <h1><b><?= $e['nombre_estado'] ?></b></h1>
+                <hr>
+              </div>
+              <div class="container">
+                <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                  <button type="button" tabindex="-1" class="btn btn-outline-orange" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></form>
+        <div class="modal fade" id="editModal<?= $e['id_estado'] ?>" tabindex="-1" aria-labelledby="editModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <form id="form_estado_<?= $e['id_estado'] ?>" name="form_estado_<?= $e['id_estado'] ?>" action="estados/update/<?= $e['id_estado'] ?>" method="post">
+            <div class="modal-content">
+              <div class="modal-body text-center">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Editar estado</h5>
+                <hr>
+                <!-- <input type="hidden" id="id_estado" name="id_estado" value="<?= $e['id_estado'] ?>"> -->
+                <input type="text" id="nombre_estado" name="nombre_estado" placeholder="Nombre Estado" value="<?= $e['nombre_estado'] ?>" class="form-control form-control-lg">
+                <hr>
+                <input type="text" id="descripcion_estado" name="descripcion_estado" placeholder="Descripción Estado" value="<?= $e['descripcion_estado'] ?>"
+                  class="form-control form-control-lg">
+                <hr>
+                <input type="text" id="tabla" name="tabla" placeholder="Tabla Estado" value="<?= $e['tabla'] ?>"
+                  class="form-control form-control-lg">
+                <hr>
+              </div>
+              <div class="container">
+                <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                  <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                  <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      <?php endforeach; ?>
+      <form action="estados/create" method="post">
+        <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body text-center">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Crear Estado</h5>
+                <hr>
+                
+                <input type="text" id="nombre_estado" name="nombre_estado" placeholder="Nombre Estado" value=""
+                  class="form-control form-control-lg">
+                <hr>
+                <input type="text" id="descripcion_estado" name="descripcion_estado" placeholder="Descripción Estado" value=""
+                  class="form-control form-control-lg">
+                <hr>
+                <input type="text" id="tabla" name="tabla" placeholder="Tabla Estado" value=""
+                  class="form-control form-control-lg">
+                <hr>
+              </div>
+              <div class="container">
+                <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                  <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                  <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+

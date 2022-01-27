@@ -1,0 +1,170 @@
+/*NEW*/
+
+@font-face {
+  font-family: 'Futura PT Book';
+  src: url('../fonts/FuturaPT/FuturaPTBook.otf');
+}
+
+@font-face {
+  font-family: 'Futura PT Medium';
+  src: url('../fonts/FuturaPT/FuturaPTMedium.otf');
+}
+
+@font-face {
+  font-family: 'Futura PT Bold';
+  src: url('../fonts/FuturaPT/FuturaPTBold.otf');
+}
+html,
+body {
+  height: 100%;
+}
+
+
+body {
+  font-family: 'Futura PT Book', Arial;
+  background-color: #F1F1F1;
+}
+
+
+h1 {
+  color: #0066a6;
+  font-size: 35px;
+  font-family: 'Futura PT Book'; }
+
+h2 {
+  color: #5e5e5e;
+  font-size: 32px;
+  font-family: 'Futura PT Book'; }
+
+h3 {
+  color: #5e5e5e;
+  font-size: 29px;
+  font-family: 'Futura PT Book'; }
+
+h4 {
+  color: #5e5e5e;
+  font-size: 18px;
+  font-family: 'Futura PT Book'; }
+
+  button {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #0066a6;
+    border: 1px solid #0066a6;
+    color: #fff;
+    padding: 10px 34px;
+    text-align: center;
+    font-family: 'Futura PT Book';
+    font-size: 15px;
+    text-transform: uppercase;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-transition: all .5s; }
+
+  button.trasparente {
+    background-color: transparent;
+    border: 1px solid #fff;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-transition: all .5s; }
+
+  button.negro {
+    background-color: #000;
+    border: 1px solid #000;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-transition: all .5s; }
+
+  button.blanco {
+    background-color: #fff;
+    border: 1px solid #7c7c7c;
+    color: #7c7c7c;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-transition: all .5s; }
+
+  button.gris {
+    background-color: #f6f6f6;
+    border: 1px solid #7c7c7c;
+    color: #7c7c7c;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-transition: all .5s; }
+
+/*LOGIN*/
+    body.login {
+          display: flex;
+          align-items: top;
+          padding-bottom: 40px;
+          background: rgb(0,181,221);
+          background: -webkit-linear-gradient(left, rgba(0,181,221,1) 0%, rgba(0,118,181,1) 100%);
+          background: -o-linear-gradient(left, rgba(0,181,221,1) 0%, rgba(0,118,181,1) 100%);
+          background: linear-gradient(to right, rgba(0,181,221,1) 0%, rgba(0,118,181,1) 100%);
+        }
+
+    .form-signin {width: 100%; max-width: 380px; padding: 0px; margin: auto;}
+    .form-signin .checkbox {font-weight: 400;}
+    .form-signin .form-floating:focus-within {z-index: 2;}
+    .form-signin input[type="email"] {margin-bottom: -1px; border-bottom-right-radius: 0;border-bottom-left-radius: 0;}
+    .form-signin input[type="password"] {margin-bottom: 10px; border-top-left-radius: 0; border-top-right-radius: 0;}
+    .card-code{ background-color: #F1F1F1 !important;}
+    .form-signin {}
+    .form-signin button[type="submit"]:hover{border:1px solid #0066a6; background-color: #fff; color: #0066a6}
+/**/
+
+/*CODE INPUT*/
+.code-input {width: 100%; max-width: 380px; padding: 0px; margin: auto;}
+.code-input input[type="text"] { color: #0066a6; font-size: 1.5rem;}
+.code-input i.fa{ color:  #0066a6}
+.card-code{ background-color: #F1F1F1 !important;}
+/**/
+
+  .bg-code{background-color: #0066a6 !important;}
+  .txt-orange{ color: #0066a6;}
+  .txt-28{ font-size: 28px}
+  .txt-18{ font-size: 18px}
+  .txt-uppercase{ text-transform: uppercase;}
+  .devices-list{ }
+    .devices-list a{ background-color: #fff; padding: 1.5rem; border-radius: 8px; text-decoration: none; color:#63666A; text-transform: uppercase;}
+    .devices-list a:hover,
+    .devices-list a.active{
+      background-color: #0066a6; color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.3)}
+    .devices-list .devices-name{}
+    .devices-list .devices-name span{ font-weight: bold; padding-right: 1.5rem;}
+    .devices-list .device-delete{ font-size: 0.90rem;}
+
+
+    .devices-list-v2{}
+      .devices-list-v2 .btn-group > .btn{ background-color: #fff;padding: 1.5rem; color:#63666A; }
+      .devices-list-v2 .btn-group > .btn:nth-child(1){ margin-right: 5px;}
+      .devices-list-v2 .btn-group > .btn:nth-child(2){ margin-left: 5px;}
+      .devices-list-v2 .btn-group > .btn:hover{background-color: #0066a6; color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,0.3)}
+      .devices-list-v2 .btn-group *:focus{  outline: none;}
+
+      .devices-list-v2 .btn-devices-edit{ text-align: left;}
+      .devices-list-v2 .btn-devices-delete{text-align: right;font-size: 0.90rem;}
+
+      .devices-list-v3{}
+        .devices-list-v3 > *{color:#63666A; }
+        .devices-list-v3 .devices-name{background-color: #fff;border-radius: 5px; text-transform: uppercase;padding: 1.5rem; margin-right: 10px;}
+        .devices-list-v3 .btn{padding: 1.5rem;background-color: #fff;}
+        .devices-list-v3 .btn:hover{background-color: #0066a6; color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,0.3)}
+        .devices-list-v3 .btn:nth-child(1){margin-right: 10px;}
+/*
+.btn-secondcolor{background-color: #fff;border:1px solid #c4d600;padding: 1rem; color:#63666A; margin-bottom: 3rem; text-transform: uppercase;}
+.btn-secondcolor span{ margin-left: 1rem}
+  .btn-secondcolor:hover{background-color: #c4d600;padding: 1rem; border-color: transparent; color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,0.3)}
+*/
+
+  .btn-secondcolor{background-color: #fff;border:1px solid #009bd9;padding: 1rem; color:#009bd9; margin-bottom: 3rem; text-transform: uppercase;}
+  .btn-secondcolor span{ margin-left: 1rem}
+    .btn-secondcolor:hover{background-color: #009bd9;padding: 1rem; border-color: transparent; color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,0.3)}
+
+/*MODAL BUTTON*/
+.modal .btn-group .btn, .btn-group .btn  { background-color: #fff;padding: 1rem; color:#63666A; }
+.modal .btn-group .btn:nth-child(1), .btn-group .btn:nth-child(1){ margin-right: 5px;}
+.modal .btn-group .btn:nth-child(2), .btn-group .btn:nth-child(2){ margin-left: 5px;}
+.modal .btn-group .btn-outline-orange, .btn-group .btn-outline-orange{ border:1px solid #0066a6; }
+.modal .btn-group .btn-outline-orange:hover, .btn-group .btn-outline-orange:hover{background-color: #0066a6; border-color: transparent; color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,0.3)}
+.modal i.fa{ color:  #0066a6}

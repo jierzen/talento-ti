@@ -1,0 +1,51 @@
+<nav id="sidebar" class="">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+        </button>
+    </div>
+    <div class="pl-4 pt-5 pr-0">
+        <h1 class="text-center pr-4"><a href="index.html" class="logo"><img src="assets/img/logo.svg" alt="Talento TI" class="img-fluid p-4"></a></h1>
+        <ul class="list-unstyled components mb-2">
+            <li class="<?= (isset($active_inicio) ? $active_inicio : '') ?>">
+                <a href="home"><i class="fa fa-home pr-2"></i> Inicio</a>
+            </li>
+            <li class="<?= (isset($active_usuarios) ? $active_usuarios : '') ?>">
+                <a href="usuarios"><i class="fa fa-home pr-2"></i> Usuarios</a>
+            </li>
+            <li class="<?= (isset($active_personas) ? $active_personas : '') ?>">
+             <a href="personas"><i class="fa fa-home pr-2"></i> Personas / Empresas</a>
+            </li>
+            <li class="<?= (isset($active_roles) ? $active_roles : '') ?>">
+                <a href="roles"><i class="fa fa-home pr-2"></i> Roles</a>
+               </li>
+            <li class="<?= isset($active) ?>">
+            <li class="<?= (isset($active_perfiles) ? $active_perfiles : '') ?>">
+                <a href="perfiles"><i class="fa fa-home pr-2"></i> Perfiles</a>
+               </li>
+            <li class="<?= (isset($active_ofertas) ? $active_ofertas : '') ?>">
+                <a href="ofertas"><i class="fa fa-home pr-2"></i> Ofertas</a>
+            </li>
+            <li class="<?= (isset($active_estados) ? $active_estados : '') ?>">
+                <a href="estados"><i class="fa fa-home pr-2"></i> Estados</a>
+            </li>
+            <li class="<?= isset($active_solicitudes) ?>">
+                <a href="solicitudes"><i class="fa fa-home pr-2"></i> Solicitudes</a>
+            </li>
+            <li class="<?= isset($active_habilidades) ?>">
+                <a href="habilidades"><i class="fa fa-home pr-2"></i> Habilidades</a>
+            </li>
+            <hr>
+            <li class="<?= isset($active_logout) ?>">
+                <a href="logout" ><i class="fa fa-lock pr-2"></i> Cerrar Sesión</a>
+            </li>
+        </ul>
+    
+        <div class="footer text-center">
+            <small>
+                Copyright © K7 Adaptación Natural
+            </small>
+        </div>
+    </div>
+</nav>

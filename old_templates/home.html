@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <title>Talento TI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="robots" content="noindex, follow">
+    <?php
+    session_start(); 
+    session_regenerate_id(true);
+    if (!isset($_SESSION['usuario']) || session_status() === PHP_SESSION_NONE) {
+        die('No hay sesion');
+    }else{
+        //var_dump($_SESSION['usuario']);
+        //print("<pre>".print_r($_SESSION['usuario'],true)."</pre><br>");
+        //var_dump(session_id());
+    }
+    ?>
+    </head>
+    <body>
+    <main>  
+    <div class="wrapper d-flex align-items-stretch">
+      <?php include "templates/menu.html" ?>
+
+
+    <!--************************
+        CONTENIDO DEL INFORME
+    *****************************-->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="row">
+            <div class="col-md-6" id="breadcrum">
+
+            </div>
+            <div class="col-md-6" id="profile">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="namecard mr-3">
+                        <span class="name">
+                            <?php
+                            if($_SESSION['usuario']['id_tipo_persona'] == 1){
+                                echo $_SESSION['usuario']['nombre_razonsocial'];
+                            }else{
+                                echo $_SESSION['usuario']['nombre_razonsocial'].' '.$_SESSION['usuario']['apellidos'];
+                            }
+                            ?>
+                        </span> 
+
+                        <span class="type">
+                            <?php
+                            if($_SESSION['usuario']['id_tipo_persona'] == 1){
+                                echo 'Empresa ';
+                            }else{
+                                echo 'Profesional ';
+                            }
+                            ?> TI</span>
+                    </div><!--//NAME-->
+                    <img src="https://via.placeholder.com/48" class="align-self-center mr-3 rounded-circle" alt="...">
+                </div>
+
+            </div>
+        </div>
+    <hr>
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-6 ">
+        <h2>Titulo Sección</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+          Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+      </div>
+      <div class="col-md-3 col-xs-12 text-right">
+        <a href="" class="btn btn-default btn-block"> Acción boton</a>
+      </div>
+
+    </div>
+    <hr>
+
+
+    <div class="row mb-5 mt-5">
+
+      <div class="col-12">
+        <?php 
+          include $template
+          ?>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+          Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+      </div>
+    </div>
+  </div>
+    </div>
+  </main>
+
+
+  <script src="assets/js/bootstrap.min.js"></script>
+
+
+
+
+  <!-- Modal Desvincular
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">¿Esta seguro que desea desvincular el dispositivo?
+          </h5>
+          <hr>
+          <h1><b>Tv Sony</b></h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-between mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-outline-orange">Si</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+
+  <!-- Modal Crear-->
+  <form action="usuarios/create" method="post">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <h5 class="modal-title text-center" id="exampleModalLabel">Crear usuario</h5>
+            <hr>
+            <!-- <input type="hidden" id="id_usuario" name="id_usuario" value="<?= $u['id_usuario'] ?>"> -->
+            <input type="text" id="email" name="email" placeholder="email" value=""
+              class="form-control form-control-lg">
+            <hr>
+            <input type="text" id="password" name="password" placeholder="password" value=""
+              class="form-control form-control-lg">
+            <hr>
+          </div>
+          <div class="container">
+            <div class="btn-group d-flex justify-content-between mb-3" role="group">
+              <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+              <button type="submit" class="btn btn-outline-orange">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!--MODAL NOTIFICACION OK
+  <div class="modal fade" id="OkModal" tabindex="-1" aria-labelledby="OkModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Proceso de desvincular el dispositivo:</h5>
+          <hr>
+          <i class="fa fa-check fa-5x"></i>
+
+          <h1><b>Tv Sony</b><br>Se realizó con éxito</h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-center mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+  <!--MODAL NOTIFICACION NO
+  <div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="ErrorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Proceso de desvincular el dispositivo:</h5>
+          <hr>
+          <i class="fa fa-exclamation-circle fa-5x"></i>
+
+          <h1><b>Tv Sony</b><br>No se realizó</h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-center mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver a Intententarlo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+</body>
+
+</html>

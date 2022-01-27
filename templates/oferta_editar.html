@@ -1,0 +1,53 @@
+<?php 
+//print("<pre>".print_r($_SESSION['oferta'],true)."</pre><br>");
+$id_oferta = $_SESSION['oferta'][0]['id_oferta'];
+$nombre_oferta = $_SESSION['oferta'][0]['nombre_oferta'];
+$descripcion = $_SESSION['oferta'][0]['descripcion'];
+$fecha_oferta = $_SESSION['oferta'][0]['fecha_oferta'];
+$comentarios = $_SESSION['oferta'][0]['comentarios'];
+$url_documento = $_SESSION['oferta'][0]['url_documento'];
+$id_proyecto = $_SESSION['oferta'][0]['id_proyecto'];
+$tipo_proyecto = $_SESSION['oferta'][0]['tipo_proyecto'];
+?>
+<hr>
+<div class="content">
+    <div class="card">
+      <div class="card-body">
+        <form action="editarOferta" method="post" id="formEditarOferta" class="row justify-content-between">
+		<h4 class="col-md-12">Editar Oferta ID: <?php print_r($id_oferta) ?></h4>
+          <div class="col-md-6">
+            <hr class="mb-4">
+            <div class="mb-3">
+              <label for="nombre_oferta" class="form-label">Título Oferta</label>
+              <input class="form-control input-border" type="text" name="nombre_oferta" value="<?= $nombre_oferta ?>" placeholder="Titulo" id="nombre_oferta" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripcion</label>
+              <textarea class="form-control input-border" id="descripcion" type="text" name="descripcion" placeholder="Descripcion" rows="4" cols="50" required><?php print_r($descripcion) ?></textarea>
+           </div>
+          </div>
+		  <div class="col-md-6">
+		  <hr class="mb-4">
+		  <div class="mb-3">
+              <label for="id_proyecto" class="form-label">ID Proyecto</label>
+              <input class="form-control input-border" id="id_proyecto" type="text" name="id_proyecto" value="<?= $id_proyecto ?>" placeholder="Proyecto" required>
+           </div>
+		  <div class="mb-3">
+              <label for="tipo_proyecto" class="form-label">Tipo de proyecto</label>
+              <input class="form-control input-border" id="" type="text" name="tipo_proyecto" value="<?= $tipo_proyecto ?>" placeholder="Tipo de proyecto" required>
+           </div>
+			<input type="text" name="id_oferta" value="<?= $id_oferta ?>" hidden>
+		  </div>
+        </form>
+		<div class="row">
+        <div class="col-12 text-right">
+          <hr>
+          <a href="ofertas_empresa" class="btn btn-outline-secondary p-3 px-5">Cancelar</a>
+          <button type="submit" class="btn btn-outline-success p-3 px-5" form="formEditarOferta">Guardar</button>
+        </div>
+      </div>
+        </div><!--//CARD-BODY-->
+    </div><!--//CARD-->
+</div><!--//ROW-->
+
+            

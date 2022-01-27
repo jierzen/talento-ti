@@ -1,0 +1,325 @@
+<hr>
+<div class="row justify-content-between align-items-center">
+  <div class="col-md-7">
+    <h2>
+      <?= $template ?>
+    </h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+      Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+  </div>
+  <div class="col-md-4 col-xs-12 text-right">
+    <button data-toggle="modal" data-target="#AddEstados"
+      class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i
+        class="fa fa-toggle-on fa-2x mr-3"></i> Crear Estados</button>
+  </div>
+
+</div>
+<!--//ROW-->
+<hr>
+<div class="row mb-5 mt-5">
+  <div class="col-md-12 ">
+    <div class="card">
+      <div class="card-body">
+        <h2>Estados Creados</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+          Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+        <table class="table table-striped dataTable" style="width:100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre Estado</th>
+              <th>Descripción Estado</th>
+              <th>Tabla</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach($estados as $e): ?>
+            <tr>
+              <td>
+                <?= $e['id_estado'] ?>
+              </td>
+              <td>
+                <?= $e['nombre_estado'] ?>
+              </td>
+              <td>
+                <?= $e['descripcion_estado'] ?>
+              </td>
+              <td>
+                <?= $e['tabla'] ?>
+              </td>
+              <td>
+                <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-eye"></i></button>
+                <button type="button" name="button" class="btn btn-light btn-sm" data-id="<?= $e['id_estado'] ?>"
+                  data-toggle="modal" data-target="#editEstado" data-nombre-estado="<?= $e['nombre_estado'] ?>"
+                  data-descripcion-estado="<?= $e['descripcion_estado'] ?>" data-tabla="<?= $e['tabla'] ?>"> <i
+                    class="fa fa-pencil"></i></button>
+                <button type="button" name="button" class="btn btn-light btn-sm" data-id="<?= $e['id_estado'] ?>"
+                  data-toggle="modal" data-target="#deleteEstado" data-nombre-estado="<?= $e['nombre_estado'] ?>"
+                  data-tabla="<?= $e['tabla'] ?>"> <i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+
+        <!--
+
+        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+        <hr>
+        <?php foreach($estados as $e): ?>
+        <div class="estados-list d-flex justify-content-between align-items-center mb-3">
+          <div class="estados-id">
+            <a href="estados/<?= $e['id_estado'] ?>" class="" data-bs-toggle="modal"
+              data-bs-target="#editModal<?= $e['id_estado'] ?>">
+              <span>
+                <?= $e['id_estado'] ?>
+              </span>
+              <p></p>
+            </a>
+          </div>
+          <div class="estados-nombre">
+            <span>
+              <?= $e['nombre_estado'] ?>
+            </span>
+            <p></p>
+          </div>
+          <div class="estados-descripcion">
+            <span>
+              <?= $e['descripcion_estado'] ?>
+            </span>
+            <p></p>
+          </div>
+          <div class="estados-tabla">
+            <span>
+              <?= $e['tabla'] ?>
+            </span>
+            <p></p>
+          </div>
+          <div class="estados-delete">
+            <a href="estados/<?= $e['id_estado'] ?>" class="" data-bs-toggle="modal"
+              data-bs-target="#deleteModal<?= $e['id_estado'] ?>">
+              Delete <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+          <form action="estados/delete/<?= $e['id_estado'] ?>" method="post">
+            <div class="modal fade" id="deleteModal<?= $e['id_estado'] ?>" tabindex="-1" aria-labelledby="deleteLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar este estado?
+                    </h5>
+                    <hr>
+                    <h1><b>
+                        <?= $e['nombre_estado'] ?>
+                      </b></h1>
+                    <hr>
+                  </div>
+                  <div class="container">
+                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                      <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                        data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="modal fade" id="editModal<?= $e['id_estado'] ?>" tabindex="-1" aria-labelledby="editModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <form id="form_estado_<?= $e['id_estado'] ?>" name="form_estado_<?= $e['id_estado'] ?>"
+                action="estados/update/<?= $e['id_estado'] ?>" method="post">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Editar estado</h5>
+                    <hr>
+                    <input type="text" id="nombre_estado" name="nombre_estado" placeholder="Nombre Estado"
+                      value="<?= $e['nombre_estado'] ?>" class="form-control form-control-lg">
+                    <hr>
+                    <input type="text" id="descripcion_estado" name="descripcion_estado"
+                      placeholder="Descripción Estado" value="<?= $e['descripcion_estado'] ?>"
+                      class="form-control form-control-lg">
+                    <hr>
+                    <input type="text" id="tabla" name="tabla" placeholder="Tabla Estado" value="<?= $e['tabla'] ?>"
+                      class="form-control form-control-lg">
+                    <hr>
+                  </div>
+                  <div class="container">
+                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                      <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                      <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+        <form action="estados/create" method="post">
+          <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body text-center">
+                  <h5 class="modal-title text-center" id="exampleModalLabel">Crear Estado</h5>
+                  <hr>
+
+                  <input type="text" id="nombre_estado" name="nombre_estado" placeholder="Nombre Estado" value=""
+                    class="form-control form-control-lg">
+                  <hr>
+                  <input type="text" id="descripcion_estado" name="descripcion_estado" placeholder="Descripción Estado"
+                    value="" class="form-control form-control-lg">
+                  <hr>
+                  <input type="text" id="tabla" name="tabla" placeholder="Tabla Estado" value=""
+                    class="form-control form-control-lg">
+                  <hr>
+                </div>
+                <div class="container">
+                  <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                    <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                    <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      -->
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="editEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="form_edit_estados" name="form_edit_estados" action="estados/update" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Estado</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group mr-2">
+                      <label for="nombre_estado" class="form-label">Nombre Estado</label>
+                      <input type="nombre_estado" id="nombre_estado" name="nombre_estado" placeholder="Nombre Estado"
+                        value="" class="form-control input-border" required>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group mr-2">
+                      <label for="tabla" class="form-label">Tabla</label>
+                      <select id="tabla" name="tabla" class="form-control input-border">
+                        <?php foreach($tablas as $t): ?>
+                        <option value="<?= $t['table_name'] ?>">
+                          <?= $t['table_name'] ?>
+                        </option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="id_estado" class="form-label">Descripción Estado</label>
+                      <input type="descripcion_estado" id="descripcion_estado" name="descripcion_estado"
+                        placeholder="Descripción Estado" value="" class="form-control input-border" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="AddEstados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="form_create_estados" name="form_create_estados" action="estados/create" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crear Estado</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group mr-2">
+                      <label for="nombre_estado" class="form-label">Nombre Estado</label>
+                      <input type="nombre_estado" id="nombre_estado" name="nombre_estado" placeholder="Nombre Estado"
+                        value="" class="form-control input-border" required>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group mr-2">
+                      <label for="tabla" class="form-label">Tabla</label>
+                      <select id="tabla" name="tabla" class="form-control input-border">
+                        <?php foreach($tablas as $t): ?>
+                        <option value="<?= $t['table_name'] ?>">
+                          <?= $t['table_name'] ?>
+                        </option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="id_estado" class="form-label">Descripción Estado</label>
+                      <input type="descripcion_estado" id="descripcion_estado" name="descripcion_estado"
+                        placeholder="Descripción Estado" value="" class="form-control input-border" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteEstado" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="form_delete_estados" name="form_delete_estados" action="" method="post">
+          <div class="modal-body text-center">
+            <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+              este estado?
+            </h5>
+            <hr>
+            <h2><b>
+                <span id="modal-delete-nombre-estado"></span> / <span id="modal-delete-tabla"></span>
+              </b></h2>
+          </div>
+          <div class="modal-footer">
+            <button type="button" tabindex="-1" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,127 @@
+
+
+    <main class="container">
+        <div class="pt-5">
+
+            <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+            <hr>
+            <?php foreach($roles as $rol): ?>
+            <div class="roles-list d-flex justify-content-between align-items-center mb-3">
+                <div class="roles-id">
+                    <a href="roles/<?= $rol['id_rol'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#editModal<?= $rol['id_rol'] ?>">
+                        <span>
+                            <?= $rol['id_rol'] ?>
+                        </span>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="roles-nombre-rol">
+                    <span>
+                        <?= $rol['nombre_rol'] ?>
+                    </span>
+                    <p></p>
+                </div>
+                <div class="roles-estado">
+                    <span>
+                        <?= $rol['nombre_estado'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="roles-delete">
+                    <a href="roles/<?= $rol['id_rol'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<?= $rol['id_rol'] ?>">
+                        Delete <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+                <form action="roles/delete/<?= $rol['id_rol'] ?>" method="post">
+                    <div class="modal fade" id="deleteModal<?= $rol['id_rol'] ?>" tabindex="-1"
+                        aria-labelledby="deleteLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar esta
+                                        rol?
+                                    </h5>
+                                    <hr>
+                                    <h1><b>
+                                            <?= $rol['nombre_rol'] ?>
+                                        </b></h1>
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal fade" id="editModal<?= $rol['id_rol'] ?>" tabindex="-1"
+                    aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form id="form_rol_<?= $rol['id_rol'] ?>" name="form_rol_<?= $rol['id_rol'] ?>"
+                            action="roles/update/<?= $rol['id_rol'] ?>" method="post">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Editar rol</h5>
+                                    <hr>
+
+                                    <input type="text" id="nombre_rol" name="nombre_rol" placeholder="Nombre del rol"
+                                        value="<?= $rol['nombre_rol'] ?>" class="form-control form-control-lg">
+                                    <hr>
+                                    <select id="id_estado" name="id_estado" class="form-control form-control-lg">
+                                        <?php foreach($estados as $e): ?>
+                                        <option value="<?= $e['id_estado'] ?>" <?php echo ($rol['id_estado'] == $e['id_estado'] ?  "selected" :  ""); ?>><?= $e['nombre_estado'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <hr>            
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <form action="roles/create" method="post">
+                <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body text-center">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Crear Rol</h5>
+                        <hr>
+                        
+                        <input type="text" id="nombre_rol" name="nombre_rol" placeholder="Nombre Rol" value=""
+                          class="form-control form-control-lg">
+                        <hr>
+                        <select id="id_estado" name="id_estado" class="form-control form-control-lg">
+                            <?php foreach($estados as $e): ?>
+                            <option value="<?= $e['id_estado'] ?>"><?= $e['nombre_estado'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                      </div>
+                      <div class="container">
+                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                          <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                          <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </main>
+

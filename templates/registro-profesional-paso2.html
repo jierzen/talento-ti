@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+    <title>Talento TI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="robots" content="noindex, follow">
+    </head>
+    <body class="d-flex justify-content-center align-items-center" id="registro">
+      <main id="login">
+    <div class="wrapper d-flex align-items-stretch">
+
+
+    <!--************************
+        CONTENIDO DEL INFORME
+    *****************************-->
+    <div id="content" class="text-light">
+
+    <div class="row">
+
+        <div class="col-6">
+          <div class="row mb-4 pt-4 p-3 d-flex justify-content-between">
+              <div class="col-6 align-items-start">
+                  <img src="assets/images/logo.svg" alt="Talento TI" class="ml-4" height="80px">
+              </div>
+              <div class="col-6 text-right">
+                  <a href="index" class="btn btn-sm btn-outline-secondary btn-round mr-2">Sitio Web</a>
+                  <a href="login" class="btn btn-sm btn-outline-secondary btn-round">Ingresar</a>
+              </div>
+          </div>
+               <div class="row justify-content-center pt-2">
+                <div class="col-8">
+                    <div class="d-flex flex-column">
+                        <h2>Hola <b>Nombre Apellido</b></h2>
+                        <p>Necesitamos que llenes algunos datos más para continuar con tu registro.</p>
+                    </div>
+                </div>
+           </div>
+           
+            <form action="registrarProfesional" method="post" class="row justify-content-center" onsubmit="return validarCorreo()">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="email">Email(*)</label>
+                        <input type="email" name="email" class="form-control" id="email"
+                            placeholder="Email" 
+                            onfocus="validaMismoCorreo()"
+                            onblur="validaMismoCorreo()"
+                            onkeydown="validaMismoCorreo()"
+                            onkeypress="validaMismoCorreo()"
+                            onkeyup="validaMismoCorreo()" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="repeatEmail">Repetir Email(*)</label>
+                        <input type="email" name="repeatEmail" class="form-control" id="repeatEmail"
+                            placeholder="Repetir Email"
+                            onfocus="validaMismoCorreo()"
+                            onblur="validaMismoCorreo()"
+                            onkeydown="validaMismoCorreo()"
+                            onkeypress="validaMismoCorreo()"
+                            onkeyup="validaMismoCorreo()">
+                    </div>
+                    <div class="form-group mb-2">
+                        <i class="fa fa-times fa-2x" aria-hidden="true" id="correoMal" style="visibility: hidden; color: crimson"></i>
+                        <i class="fa fa-check fa-2x" aria-hidden="true" id="correoBien" style="visibility: hidden; color: cadetblue"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono Movil(*)</label>
+                        <input type="phone" name="telefono" class="form-control phone" id="telefono"
+                            placeholder="+56911117777" pattern="[+]56[0-9]{1,1}[0-9]{8,8}" title="Ejemplo +56911119999 sin espacios" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Contraseña(*)</label>
+                        <input type="password" name="password" class="form-control" id="pass"
+                            required>
+                    </div>
+                    <input id="" name="nombre_razonsocial" type="hidden" value="<?= $registroPaso1['nombre_razonsocial'] ?>">
+                    <input id="" name="apellidos" type="hidden" value="<?= $registroPaso1['apellidos'] ?>">
+                    <input id="" name="rut" type="hidden" value="<?= $registroPaso1['rut'] ?>">
+                    <div class="d-grid col-6 mx-auto mt-4">
+                        <button type="submit" class="btn btn-primary btn-block p-3">Registrarme</button>
+                    </div>
+                </div>
+            </form>
+            <div class="row justify-content-center">
+            <div class="col-8">
+                 <ol class="pasos">
+                    <li><a href="registro_profesional_p1" ></a></li>
+                     <li><a href="registro-profesional-p2" class="active"></a></li>
+                 </ol>
+             </div>
+        </div>
+        </div>
+        <div class="col-6" style="background-image: url(https://images.unsplash.com/photo-1520640621864-b499c5d1e0b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80); background-size: cover;">
+        </div>
+
+    </div>
+    </div>
+     <!--************************
+        FIN CONTENIDO DEL INFORME
+    *****************************-->
+    </div>
+
+    </main>
+
+    <!--*SCRIPT*-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/localization/messages_es.min.js"></script>
+    <script src="assets/js/jquery-validate-rut.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;68f2281d9ad02df4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;si&quot;:10}"></script> -->
+
+    </body>
+    </html>

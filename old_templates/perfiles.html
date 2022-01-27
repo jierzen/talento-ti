@@ -1,0 +1,171 @@
+    <main class="container">
+        <div class="pt-5">
+            <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+            <hr>
+            <?php foreach($perfiles as $pf): ?>
+            <div class="perfil-list d-flex justify-content-between align-items-center mb-3">
+                <div class="perfil-id">
+                    <a href="perfiles/<?= $pf['id_perfil'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#editModal<?= $pf['id_perfil'] ?>">
+                        <span>
+                            <?= $pf['id_perfil'] ?>
+                        </span>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="perfil-titulo">
+                    <span>
+                        <?= $pf['titulo_prof'] ?>
+                    </span>
+                    <p></p>
+                </div>
+                <div class="perfil-resumen">
+                    <span>
+                        <?= $pf['resumen'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <a href="<?= $pf['url_cv'] ?>">
+                    <div class="perfil-cv">
+                        <span>
+                            <?= $pf['url_cv'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                </a>
+
+                <div class="perfil-disponibilidad">
+                    <span>
+                        <?= $pf['disponibilidad'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="perfil-persona">
+                    <span>
+                        <?= $pf['nombre_persona'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="perfil-plazo">
+                    <span>
+                        <?= $pf['plazo_proyecto'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="perfil-delete">
+                    <a href="perfiles/<?= $pf['id_perfil'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<?= $pf['id_perfil'] ?>">
+                        Delete <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+                <form action="perfiles/delete/<?= $pf['id_perfil'] ?>" method="post">
+                    <div class="modal fade" id="deleteModal<?= $pf['id_perfil'] ?>" tabindex="-1"
+                        aria-labelledby="deleteLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar este
+                                        perfil?
+                                    </h5>
+                                    <hr>
+                                    <h1><b>
+                                            <?= $pf['titulo_prof'] ?>
+                                        </b></h1>
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal fade" id="editModal<?= $pf['id_perfil'] ?>" tabindex="-1"
+                    aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form id="form_perfil_<?= $pf['id_perfil'] ?>" name="form_perfil_<?= $pf['id_perfil'] ?>"
+                            action="perfiles/update/<?= $pf['id_perfil'] ?>" method="post">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Editar perfil</h5>
+                                    <hr>
+
+                                    <input type="text" id="titulo_prof" name="titulo_prof"
+                                        placeholder="Titulo profesional" value="<?= $pf['titulo_prof'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                    <input type="text" id="resumen" name="resumen" placeholder="Resumen" value="<?= $pf['resumen'] ?>"
+                                        class="form-control form-control-lg">
+                                        <hr>
+                                    <input type="text" id="url_cv" name="url_cv"
+                                        placeholder="http://www.example.com/tituloCV" value="<?= $pf['url_cv'] ?>"
+                                        class="form-control form-control-lg">
+                                        <hr>
+                                    <input type="text" id="disponibilidad" name="disponibilidad"
+                                        placeholder="Disponibilidad" value="<?= $pf['disponibilidad'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                    <input type="text" id="plazo_proyecto" name="plazo_proyecto"
+                                        placeholder="Plazo proyecto" value="<?= $pf['plazo_proyecto'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                    <input type="text" id="id_persona" name="id_persona" disabled
+                                        placeholder="Persona" value="<?= $pf['nombre_persona'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <form action="perfiles/create" method="post">
+                <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body text-center">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Crear Perfil</h5>
+                        <hr>
+                        
+                        <input type="text" id="titulo_prof" name="titulo_prof"
+                        placeholder="Titulo profesional" value="" class="form-control form-control-lg">
+                        <hr>
+                    <input type="text" id="resumen" name="resumen" placeholder="Resumen" value=""
+                        class="form-control form-control-lg">
+                        <hr>
+                    <input type="text" id="url_cv" name="url_cv"
+                        placeholder="http://www.example.com/tituloCV" value=""
+                        class="form-control form-control-lg">
+                        <hr>
+                    <input type="text" id="disponibilidad" name="disponibilidad"
+                        placeholder="Disponibilidad" value="" class="form-control form-control-lg">
+                        <hr>
+                    <input type="text" id="plazo_proyecto" name="plazo_proyecto"
+                        placeholder="Plazo proyecto" value="" class="form-control form-control-lg">
+                        <hr>
+      </div>
+                      <div class="container">
+                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                          <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                          <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </main>
+

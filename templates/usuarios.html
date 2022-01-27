@@ -1,0 +1,348 @@
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-6 ">
+        <h2>
+            <?= $template ?>
+        </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+            Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+        <button data-toggle="modal" data-target="#AddUsers"
+            class="btn btn-primary btn-block p-3 d-flex justify-content-center align-items-center"><i
+                class="fa fa-user-plus fa-2x mr-3"></i>Crear Usuarios</button>
+    </div>
+
+</div>
+<hr>
+
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+                <h2>Listado de Usuarios </h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit
+                    malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+                <table id="table_usuarios" class="table table-striped dataTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($usuarios as $us): ?>
+                        <tr>
+                            <td>
+                                <?= $us['id_usuario'] ?>
+                            </td>
+                            <td>
+                                <?= $us['email'] ?>
+                            </td>
+                            <td>
+                                <?= $us['password'] ?>
+                            </td>
+                            <td>
+                                <button type="button" name="button" class="btn btn-light btn-sm"> <i
+                                        class="fa fa-eye"></i></button>
+                                <button data-toggle="modal" data-target="#editUser" type="button" name="button"
+                                    class="btn btn-light btn-sm" data-id="<?= $us['id_usuario'] ?>" data-nombre=""
+                                    data-email="<?= $us['email'] ?>" data-password="<?= $us['password'] ?>"> <i
+                                        class="fa fa-pencil"></i></button>
+                                <button data-toggle="modal" data-target="#deleteUser" type="button" name="button"
+                                    class="btn btn-light btn-sm" data-id="<?= $us['id_usuario'] ?>"
+                                    data-email="<?= $us['email'] ?>"> <i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!--//CARD-BODY-->
+        </div>
+        <div class="row mb-5 mt-5">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Listado de Usuarios Roles</h2>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit
+                            malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+                        <table id="table_usuarios_roles" class="table table-striped dataTable" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre Usuario</th>
+                                    <th>Nombre Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($usuarios_roles as $ur): ?>
+                                <tr>
+                                    <td>
+                                        <?= $ur['id_usuario_rol'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $ur['nombre_usuario'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $ur['nombre_rol'] ?>
+                                    </td>
+                                    <td>
+                                        <button type="button" name="button" class="btn btn-light btn-sm"> <i
+                                                class="fa fa-eye"></i></button>
+                                        <button data-toggle="modal" data-target="#editUserRol" type="button"
+                                            name="button" class="btn btn-light btn-sm"
+                                            data-id="<?= $ur['id_usuario_rol'] ?>" data-nombre=""
+                                            data-id-usuario="<?= $ur['id_usuario'] ?>"
+                                            data-id-rol="<?= $ur['id_rol'] ?>"> <i class="fa fa-pencil"></i></button>
+                                        <button data-toggle="modal" data-target="#deleteUserRol" type="button"
+                                            name="button" class="btn btn-light btn-sm"
+                                            data-id="<?= $ur['id_usuario_rol'] ?>"
+                                            data-nombre-usuario="<?= $ur['nombre_usuario'] ?>"
+                                            data-nombre-rol="<?= $ur['nombre_rol'] ?>"> <i
+                                                class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--//CARD-BODY-->
+                </div>
+                <!--//CARD-->
+            </div>
+        </div>
+    </div>
+    <!--*****MODAL*******-->
+    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_edit_usuarios" name="form_edit_usuarios" action="" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group mr-2">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" name="email" placeholder="Email" value=""
+                                                class="form-control input-border" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" id="password" name="password" placeholder="Password"
+                                                value="" class="form-control input-border" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="form_delete_usuarios" name="form_delete_usuarios" action="" method="post">
+        <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                            este usuario?
+                        </h5>
+                        <hr>
+                        <h2><b>
+                                <span id="modal-delete-email"></span>
+                            </b></h2>
+                        <hr>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" tabindex="-1" class="btn btn-outline-secondary"
+                            data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--*****MODAL*******-->
+    <div class="modal fade" id="AddUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form_create_usuarios" name="form_create_usuarios" action="usuarios/create" method="post" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Usuarios</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group mr-2">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" name="email" placeholder="Email" value=""
+                                                class="form-control input-border" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" id="password" name="password" placeholder="Password"
+                                                value="" class="form-control input-border" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--*****MODAL*******-->
+    <div class="modal fade" id="editUserRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Usuario Rol</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_edit_usuarios_rol" name="form_edit_usuarios_rol" action="" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group mr-2">
+                                            <label for="nombre_usuario" class="form-label">Usuario</label>
+                                            <select id="id_usuario" name="id_usuario" class="form-control input-border">
+                                                <?php foreach($usuarios as $u): ?>
+                                                <option value="<?= $u['id_usuario'] ?>">
+                                                    <?= $u['email'] ?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="id_rol" class="form-label">Rol</label>
+                                            <select id="id_rol" name="id_rol" class="form-control input-border">
+                                                <?php foreach($roles as $r): ?>
+                                                <option value="<?= $r['id_rol'] ?>">
+                                                    <?= $r['nombre_rol'] ?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="form_delete_usuarios" name="form_delete_usuarios" action="" method="post">
+        <div class="modal fade" id="deleteUserRol" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                            este usuario rol?
+                        </h5>
+                        <hr>
+                        <h2><b>
+                                <span id="modal-delete-nombre-usuario"></span> / <span
+                                    id="modal-delete-nombre-rol"></span>
+                            </b></h2>
+                        <hr>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" tabindex="-1" class="btn btn-outline-secondary"
+                            data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--*****MODAL*******-->
+    <div class="modal fade" id="AddUsersRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form_create_usuarios" name="form_create_usuarios" action="usuarios/create" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Usuarios</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group mr-2">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" name="email" placeholder="Email" value=""
+                                                class="form-control input-border" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" id="password" name="password" placeholder="Password"
+                                                value="" class="form-control input-border" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

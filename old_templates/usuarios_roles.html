@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="K7">
+    <title>Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <!-- <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180">
+        <link rel="icon" href="img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+        <link rel="manifest" href="img/favicons/manifest.json">
+        <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#7952b3">
+        <link rel="icon" href="img/favicons/favicon.ico"> -->
+
+    <!-- vendor css -->
+    <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style-pa.css" rel="stylesheet">
+</head>
+
+<body>
+    <?php
+    if( !empty($msg) ){
+        ?><p><?php echo $msg; ?></p><?php
+    } 
+     ?>
+    <header class="navbar-dark bg-code">
+        <div class="container pt-2 pb-2">
+            <div class="d-flex justify-content-between">
+                <div>
+                </div>
+                <div>
+                    <a class="btn btn-sm btn-outline-light m-2" aria-current="page" href="logout">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="pt-5">
+            <h2 class="txt-28">Bienvenido <br><b>
+
+                </b></h2>
+            <a href="#" class="" data-bs-toggle="modal" data-bs-target="#editModal">Nuevo</a>
+            <hr>
+            <?php foreach($usuarios_roles as $ur): ?>
+            <div class="users-list d-flex justify-content-between align-items-center mb-3">
+                <div class="users-id">
+                    <a href="usuarios_roles/read/<?= $ur['id_usuario_rol'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#editModal<?= $ur['id_usuario_rol'] ?>">
+                        <span>
+                            <?= $ur['id_usuario_rol'] ?>
+                        </span>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $ur['id_usuario'] ?>
+                    </span>
+                    <p></p>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $ur['id_rol'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="device-delete">
+                    <a href="usuarios_roles/read/<?= $ur['id_usuario_rol'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<?= $ur['id_usuario_rol'] ?>">
+                        Delete <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+                <form action="usuarios_roles/delete/<?= $ur['id_usuario_rol'] ?>" method="post">
+                    <div class="modal fade" id="deleteModal<?= $ur['id_usuario_rol'] ?>" tabindex="-1"
+                        aria-labelledby="deleteLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar este usuario rol?
+                                    </h5>
+                                    <hr>
+                                    <h1><b>
+                                            <?= $ur['id_usuario_rol'] ?>
+                                        </b></h1>
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal fade" id="editModal<?= $ur['id_usuario_rol'] ?>" tabindex="-1"
+                    aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form id="form_rol_<?= $ur['id_usuario_rol'] ?>" name="form_rol_<?= $ur['id_usuario_rol'] ?>"
+                            action="usuarios_roles/update/<?= $ur['id_usuario_rol'] ?>" method="post">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Editar usuario rol</h5>
+                                    <hr>
+
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+        </div>
+    </main>
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- Modal Desvincular
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">¿Esta seguro que desea desvincular el dispositivo?
+          </h5>
+          <hr>
+          <h1><b>Tv Sony</b></h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-between mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-outline-orange">Si</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+
+    <!-- Modal Crear-->
+    <form action="usuarios_roles/create" method="post">
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Crear usuario rol</h5>
+                        <hr>
+                        <select name="id_usuario" id="id_usuario" class="form-control form-control-lg" required>
+                            <option disabled selected value>Seleccione Usuario...</option>
+                            <?php foreach($id_usuario_linelist as $usu): ?>
+                            <option value="<?= $usu['id_usuario'] ?>">Usuario ID: <?= $usu['id_usuario'] ?> - <?= $usu['email'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                        <select name="id_rol" id="id_rol" class="form-control form-control-lg" required>
+                            <option disabled selected value>Seleccione Rol...</option>
+                            <?php foreach($id_rol_linelist as $r): ?>
+                            <option value="<?= $r['id_rol'] ?>">Rol ID: <?= $r['id_rol'] ?> - <?= $r['nombre_rol'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--MODAL NOTIFICACION OK
+  <div class="modal fade" id="OkModal" tabindex="-1" aria-labelledby="OkModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Proceso de desvincular el dispositivo:</h5>
+          <hr>
+          <i class="fa fa-check fa-5x"></i>
+
+          <h1><b>Tv Sony</b><br>Se realizó con éxito</h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-center mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+    <!--MODAL NOTIFICACION NO
+  <div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="ErrorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Proceso de desvincular el dispositivo:</h5>
+          <hr>
+          <i class="fa fa-exclamation-circle fa-5x"></i>
+
+          <h1><b>Tv Sony</b><br>No se realizó</h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-center mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver a Intententarlo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<?php 
+//print("<pre>".print_r($_SESSION['habilidades'],true)."</pre><br>");
+//$id_usuario = $_SESSION['usuario'][0]['id_usuario'];
+//$id_persona = $_SESSION['persona'][0]['id_persona'];
+print("<pre>".print_r($_POST,true)."</pre><br>");
+?>
+<hr>
+<h2>Agregar Nueva Habilidad</h2>
+<!-- Agregar Nueva Habilidad
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-12 ">
+        <form action="crearHabilidad" method="post">
+            <select name="id_habilidad" class="form-control form-control-lg" required>
+                <option disabled selected value>Seleccione habilidad...</option>
+                <?php foreach($_SESSION['habilidades'] as $hab){ ?>
+                <option value="<?= $hab['id_habilidad'] ?>"><?php print_r($hab['nombre_habilidad']) ?></option>
+                <?php } ?>
+            </select>
+            <select name="nivel" class="form-control form-control-lg" required>
+                <option disabled selected value>Seleccione nivel de conocimiento...</option>
+                <option value="1">1 - Novato</option>
+                <option value="1">2 - Juior</option>
+                <option value="1">3 - Semi-senior</option>
+                <option value="1">4 - Senior</option>
+                <option value="1">5 - Experto</option>
+            </select>
+            <input type="text" name="id_persona" id="myInput" value="<?= $id_persona ?>" hidden>
+            <input type="text" name="id_usuario" id="myInput" value="<?= $id_usuario ?>" hidden>
+            <button type="submit" class="btn btn-default">Agregar Habilidad</button>
+        </form>
+        <hr>
+    </div>
+</div>
+-->

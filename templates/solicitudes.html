@@ -1,0 +1,202 @@
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-7">
+        <h2>
+            <?= $template ?>
+        </h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+          <button data-toggle="modal" data-target="#AddSolicitudes"  class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i class="fa fa-lightbulb-o fa-2x mr-3"></i> Crear Roles</button>
+    </div>
+
+</div><!--//ROW-->
+<hr>
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+
+
+                
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+                <hr>
+                <?php foreach($solicitudes as $sol): ?>
+                <div class="solicitudes-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="solicitudes-id">
+                        <a href="solicitudes/read/<?= $sol['id_solicitud'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editModal<?= $sol['id_solicitud'] ?>">
+                            <span>
+                                <?= $sol['id_solicitud'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="solicitudes-email">
+                        <span>
+                            <?= $sol['oferta'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="solicitudes-email">
+                        <span>
+                            <?= $sol['profesional'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+
+                    <div class="solicitudes-email">
+                        <span>
+                            <?= $sol['empresa'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+
+                    <div class="solicitudes-email">
+                        <span>
+                            <?= $sol['estado'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+
+                    <div class="solicitudes-email">
+                        <span>
+                            <?= $sol['fecha_solicitud'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+
+                    <div class="device-delete">
+                        <a href="solicitudes/read/<?= $sol['id_solicitud'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal<?= $sol['id_solicitud'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="solicitudes/delete/<?= $sol['id_solicitud'] ?>" method="post">
+                        <div class="modal fade" id="deleteModal<?= $sol['id_solicitud'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                                            esta
+                                            solicitud?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $sol['id_solicitud'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editModal<?= $sol['id_solicitud'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_solicitud_<?= $sol['id_solicitud'] ?>"
+                                name="form_solicitud_<?= $sol['id_solicitud'] ?>"
+                                action="solicitudes/update/<?= $sol['id_solicitud'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar solicitud</h5>
+                                        <hr>
+
+                                        <input type="datetime" id="fecha_solicitud" name="fecha_solicitud"
+                                            placeholder="<?php echo date('d-m-Y h:i:sa'); ?>"
+                                            value="<?= $sol['fecha_solicitud'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                        <select id="id_estado" name="id_estado" class="form-control form-control-lg">
+                                            <?php foreach($estados as $e): ?>
+                                            <option value="<?= $e['id_estado'] ?>" <?php echo
+                                                ($sol['id_estado']==$e['id_estado'] ? "selected" : "" ); ?>>
+                                                <?= $e['nombre_estado'] ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="solicitudes/create" method="post">
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Crear Rol</h5>
+                                    <hr>
+                                    <select id="id_estado" name="id_estado" class="form-control form-control-lg">
+                                        <?php foreach($estados as $e): ?>
+                                        <option value="<?= $e['id_estado'] ?>">
+                                            <?= $e['nombre_estado'] ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <hr>
+                                    <select id="id_oferta" name="id_oferta" class="form-control form-control-lg">
+                                        <?php foreach($ofertas as $of): ?>
+                                        <option value="<?= $of['id_oferta'] ?>">
+                                            <?= $of['nombre_oferta'] ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <hr>
+                                    <select id="id_persona_prof" name="id_persona_prof"
+                                        class="form-control form-control-lg">
+                                        <?php foreach($prof as $pr): ?>
+                                        <option value="<?= $pr['id_persona'] ?>">
+                                            <?= $pr['nombre_razonsocial']." ".$pr['apellidos'] ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <hr>
+                                    <select id="id_persona_emp" name="id_persona_emp"
+                                        class="form-control form-control-lg">
+                                        <?php foreach($emp as $em): ?>
+                                        <option value="<?= $em['id_persona'] ?>">
+                                            <?= $em['nombre_razonsocial']." ".$em['apellidos'] ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <hr>
+                                    <input type="text" id="fecha_solicitud" name="fecha_solicitud" placeholder="Fecha Solicitud" value=""
+                                        class="form-control form-control-lg">
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

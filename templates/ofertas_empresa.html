@@ -1,0 +1,105 @@
+<?php
+
+//print("<pre>".print_r($_SESSION['ofertas'],true)."</pre><br>");
+
+?>
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-7">
+        <h2>Bienvenido <?php print_r($nombre) ?> </h2> 
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p> 
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+    <?php 
+    if($id_tipo_persona == $TIPO_PERSONA_EMPRESA){
+        ?>
+        <a href="crearOferta" class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i class="fa fa-lightbulb-o fa-2x mr-3"></i>Publicar Oferta</a>
+        <?php
+    }else if($id_tipo_persona == $TIPO_PERSONA_PROFESIONAL){
+        ?>
+        <a href="perfil" class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i class="fa fa-file-text fa-2x mr-3"></i>Subir o Actualizar tu CV</a>
+        <?php
+    }
+    ?>
+    </div>
+</div><!--//ROW-->
+<hr>
+<div class="row">
+    <?php 
+    $aux=0;
+    foreach($_SESSION['ofertas'] as $ofe){
+        $aux+=1; ?>
+    <!--OFERTA INFO-->
+    <div class="col-12 mb-3">
+        <div class="card">
+          <div class="position-relative">
+            <div class="position-absolute top-0 end-0">
+            <a href="" class="btn-sm" data-toggle="modal" data-target="#modalEliminarOfe_<?= $aux ?>">
+              <i class="fa fa-times"></i>
+            </a>
+            </div>
+          </div>
+            <div class="card-body">
+
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <hgroup>
+                      <h6 class="mb-2">Oferta ID: <?php print_r($ofe['id_oferta']) ?> </h6>
+                      
+                      <h3><?php print_r($ofe['nombre_oferta']) ?></h3>
+                      <form action="oferta_editar" method="post" id="formOferta_<?= $aux ?>">
+                        <input type="text" name="id_oferta" value="<?= $ofe['id_oferta'] ?>" hidden>
+                      </form>
+                      <button type="submit" form="formOferta_<?= $aux ?>" class="btn btn-edit">Editar Oferta <i class="fa fa-pencil"></i></button>
+                  </hgroup>
+                </div>
+              </div>
+  
+              <p><?php print_r($ofe['tipo_proyecto']) ?></p>
+              <p><?php print_r($ofe['comentarios']) ?></p>
+                <p><?php print_r($ofe['descripcion']) ?></p>
+                <div class="footer-oferta d-flex justify-content-between">
+                <span>
+                  <b>Fecha de Publicación</b>
+                  <h5><?php 
+                    $time = strtotime($ofe['fecha_oferta']);
+                    $newformat = date('d F Y', $time);
+                    echo $newformat;   
+                    ?></h5>
+                </span>
+                <span>
+                  <b>Fecha de Termino</b>
+                  <h5><?php 
+                    $time2 = strtotime($ofe['fecha_termino']);
+                    $newformat2 = date('d F Y', $time);
+                    echo $newformat2;   
+                    ?></h5>
+                </span>
+                </div><!--//FOOTER-OFERTA-->
+            </div><!--//CARD-BODY-->
+        </div><!--//CARD-->
+    </div><!--//COL-->
+    <!--***FIN OFERTA INFO-->
+                                    <!--modal de eliminar una oferta-->
+                                    <div class="modal" tabindex="-1" id="modalEliminarOfe_<?= $aux ?>">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title">Eliminar Oferta</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <p>¿Desea eliminar la oferta ID: <?php print_r($ofe['id_oferta']) ?>?</p>
+                                          </div>
+                                          <form action="eliminarOferta" class="modal-footer" id="formEliminar_<?= $aux ?>" method="post">
+                                            <input type="text" name="id_oferta" value="<?= $ofe['id_oferta'] ?>" hidden>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Eliminar</button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+    <?php } ?>
+</div>

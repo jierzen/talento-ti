@@ -1,0 +1,76 @@
+<nav id="sidebar" class="">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+        </button>
+    </div>
+    <div class="pl-4 pt-5 pr-0">
+        <h1 class="text-center pr-4"><a href="getHome" class="logo"><img src="assets/images/logo.svg" alt="Talento TI" class="img-fluid p-4"></a></h1>
+        <ul class="list-unstyled components mb-5">
+            <li class="<?= ($template == 'principal' ? 'active' : '') ?>">
+                <a href="getHome"><i class="fa fa-home pr-2"></i> Inicio</a>
+            </li>
+            <li class="<?= ($template == 'datosPersona' ? 'active' : '') ?>">
+                <a href="datosPersona"><i class="fa fa-address-card pr-2"></i>Mis Datos</a>
+            </li> 
+                <?php if ($id_tipo_persona == $TIPO_PERSONA_EMPRESA){
+                ?>
+                    <li class="<?= ($template == 'match_profesionales' ? 'active' : '') ?>">
+                        <a href="empresa_match"><i class="fa fa-handshake-o fa-lock pr-2"></i>Match Profesionales</a>
+                    </li>
+                    <li class="<?= ($template == 'mis_habilidades' ? 'active' : '') ?>">
+                        <a href="ofertas_empresa"><i class="fa fa-lightbulb-o pr-2"></i>Ofertas</a>
+                    </li>
+                <?php
+                }elseif($id_tipo_persona == $TIPO_PERSONA_PROFESIONAL){
+                ?>
+                <li class="<?= ($template == 'habilidadesPersona' ? 'active' : '') ?>">
+                    <a href="habilidadesPersona"><i class="fa fa-lightbulb-o pr-2"></i>Mis Habilidades</a>
+                </li>
+                <li class="<?= ($template == 'solicituesProfesional' ? 'active' : '') ?>">
+                    <a href="solicituesProfesional"><i class="fa fa-paper-plane-o pr-2"></i>Mis Solicitudes</a>
+                </li>
+                <?php
+                } 
+                elseif($id_tipo_persona == $TIPO_PERSONA_ADMIN) { ?>
+             <li class="<?= ($template == 'usuarios' ? 'active' : '') ?>">
+                <a href="usuarios"><i class="fa fa-users pr-2"></i> Usuarios</a>
+            </li>
+            <li class="<?=  ($template == 'personas' ? 'active' : '') ?>">
+             <a href="personas"><i class="fa fa-building pr-2"></i> Personas / Empresas</a>
+            </li>
+            <li class="<?= ($template == 'roles' ? 'active' : '') ?>">
+                <a href="roles"><i class="fa fa-id-badge pr-2"></i> Roles</a>
+               </li>
+            <li class="<?= isset($active) ?>">
+            <li class="<?= (isset($active_perfiles) ? $active_perfiles : '') ?>">
+                <a href="perfiles"><i class="fa fa-address-card pr-2"></i> Perfiles</a>
+               </li>
+            <li class="<?= ($template == 'ofertas' ? 'active' : '') ?>">
+                <a href="ofertas"><i class="fa fa-bolt pr-2"></i> Ofertas</a>
+            </li>
+            <li class="<?= ($template == 'estados' ? 'active' : '') ?>">
+                <a href="estados"><i class="fa fa-toggle-on pr-2"></i> Estados</a>
+            </li>
+            <li class="<?= ($template == 'solicitudes' ? 'active' : '') ?>">
+                <a href="solicitudes"><i class="fa fa-inbox pr-2"></i> Solicitudes</a>
+            </li>
+            <li class="<?=  ($template == 'habilidades' ? 'active' : '') ?>">
+                <a href="habilidades"><i class="fa fa-lightbulb-o pr-2"></i> Habilidades</a>
+            </li>
+            <hr>
+            <?php } 
+            ?>
+            <li class="<?= isset($active_logout) ?>">
+                <a href="logout" ><i class="fa fa-lock pr-2"></i> Cerrar Sesión</a>
+            </li>
+        </ul>
+    
+        <div class="footer text-center">
+            <small>
+                Copyright © K7 Adaptación Natural
+            </small>
+        </div>
+    </div>
+</nav>

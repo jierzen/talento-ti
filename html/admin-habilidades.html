@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+    <title>Talento TI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+
+    <meta name="robots" content="noindex, follow">
+    </head>
+    <body class="bg_light">
+    <main>
+    <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar" class="">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="pl-4 pt-5 pr-0">
+            <h1 class="text-center pr-4"><a href="index.html" class="logo"><img src=" images/logo.svg" alt="Talento TI" class="img-fluid p-4"></a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a href="admin-home.html"><i class="fa fa-home pr-2"></i> Inicio</a>
+                </li>
+                <li>
+                    <a href="admin-usuarios.html"><i class="fa fa-users pr-2"></i> Usuarios</a>
+                </li>
+                <li>
+                 <a href="admin-personas.html"><i class="fa fa-building pr-2"></i> Personas / Empresas</a>
+                </li>
+                <li>
+                    <a href="admin-roles.html"><i class="fa fa-id-badge pr-2"></i> Roles</a>
+                   </li>
+                <li>
+                    <a href="admin-ofertas.html"><i class="fa fa-bolt pr-2"></i> Ofertas</a>
+                </li>
+                <li>
+                    <a href="admin-estados.html"><i class="fa fa-toggle-on pr-2"></i> Estados</a>
+                </li>
+                <li>
+                    <a href="admin-solicitudes.html"><i class="fa fa-inbox pr-2"></i> Solicitudes</a>
+                </li>
+                <li class="active">
+                    <a href="admin-habilidades.html"><i class="fa fa-lightbulb-o pr-2"></i> Habilidades</a>
+                </li>
+                <hr>
+                <li>
+                    <a href="logout.html" ><i class="fa fa-lock pr-2"></i> Cerrar Sesión</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </nav>
+
+
+    <!--************************
+        CONTENIDO DEL INFORME
+    *****************************-->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="row">
+            <div class="col-md-6" >
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home"></i> <a href="admin-home.html">Inicio</a></li>
+                <li class="breadcrumb-item active"><a href="">Habilidades</a></li>
+              </ol>
+            </div>
+            <div class="col-md-6" id="profile">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="namecard mr-3">
+                        <span class="name">Nombre Apellido </span>
+                        <span class="type">Profesional TI</span>
+                    </div><!--//NAME-->
+                    <img src="images/profile.jpeg" class="align-self-center mr-3 rounded-circle img-profile" alt="...">
+                </div>
+
+            </div>
+        </div>
+    <hr>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-7">
+            <h2>Habilidades</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+        </div>
+        <div class="col-md-4 col-xs-12 text-right">
+              <button data-toggle="modal" data-target="#AddSkills" class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i class="fa fa-lightbulb-o pr-2 fa-2x mr-3"></i> Crear Habilidades</button>
+        </div>
+
+    </div><!--//ROW-->
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h2>Habilidades Creadas</h2>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+            <table class="table table-striped dataTable" style="width:100%">
+        <thead>
+            <tr>
+                <th>Nº</th>
+                <th>Habilidad</th>
+                <th>Familia</th>
+                <th>Creada</th>
+                <th>Modificada</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Hablidad 1</td>
+                <td>Familia 1</td>
+                <td>20/10/2021</td>
+                <td>20/10/2021</td>
+                <td>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-eye"></i></button>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-pencil"></i></button>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Hablidad 1</td>
+                <td>Familia 1</td>
+                <td>20/10/2021</td>
+                <td>20/10/2021</td>
+                <td>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-eye"></i></button>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-pencil"></i></button>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Hablidad 1</td>
+                <td>Familia 1</td>
+                <td>20/10/2021</td>
+                <td>20/10/2021</td>
+                <td>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-eye"></i></button>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-pencil"></i></button>
+                  <button type="button" name="button" class="btn btn-light btn-sm"> <i class="fa fa-trash"></i></button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+          </div><!--//CARD-BODY-->
+        </div><!--//CARD-->
+      </div><!--//COL-->
+    </div><!--//ROW-->
+
+
+    </div>
+    </div>
+  </main>
+  <div class="footer text-center text-light pb-3">
+      <small>
+          Copyright © K7 Adaptación Natural
+      </small>
+  </div>
+  <!--*SCRIPT*-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/dataTables.bootstrap4.min.js"></script>
+  <script src="js/main.js"></script>
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;68f2281d9ad02df4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;si&quot;:10}"></script>
+
+
+
+  <!--*****MODAL*******-->
+  <div class="modal fade" id="AddSkills" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Crear Habilidad</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group mr-2">
+                  <label for="InputSkill" class="form-label">Nombre de la Habilidad</label>
+                  <input id="text" name="text" type="text" class="form-control input-border" id="InputSkill" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+            <label for="Skills">Familia</label>
+            <select id="Skills" name="Skills" class="form-control input-border">
+              <option value="rabbit">Nivel 1</option>
+              <option value="duck">Nivel 2</option>
+              <option value="fish">Nivel 3</option>
+              <option value="fish">Nivel 4</option>
+              <option value="fish">Nivel 5</option>
+            </select>
+
+        </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="textarea">Descripción</label>
+                <textarea id="textarea" name="textarea" cols="40" rows="20" class="form-control input-border"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-success ">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </body>
+    </html>

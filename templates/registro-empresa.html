@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Talento TI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="robots" content="noindex, follow">
+
+</head>
+
+<body class="d-flex justify-content-center align-items-center" id="registro">
+    <main id="login">
+        <div class="wrapper d-flex align-items-stretch">
+
+
+            <!--************************
+        CONTENIDO DEL INFORME
+    *****************************-->
+            <div id="content" class="text-light">
+
+                <div class="row">
+
+                    <div class="col-md-7">
+                        <div class="row mb-5 pt-4 pl-5 d-flex justify-content-between">
+                            <div class="col-6 align-items-start">
+                                <img src="assets/images/logo.svg" alt="Talento TI" class="ml-4" height="80px">
+                            </div>
+                            <div class="col-6 text-right">
+                                <a href="index" class="btn btn-sm btn-outline-secondary btn-round mr-3">Sitio Web</a>
+                                <a href="login" class="btn btn-sm btn-outline-secondary btn-round">Ingresar</a>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center pt-2">
+                            <div class="col-8">
+                                <div class="d-flex flex-column">
+                                    <h2>Registro Empresa <b>Talento TI</b></h2>
+                                    <p>Duis sapien lectus, dapibus in orci fringilla, pellentesque tempor tellus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="form_registrar_empresa" name="form_registrar_empresa" action="registrarEmpresa" method="post" class="row justify-content-center" onsubmit="return validarCorreo()">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="nombre_razonsocial">Nombre (Razon social)</label>
+                                    <input type="text" name="nombre_razonsocial" class="form-control" id="nombre_razonsocial"
+                                        aria-describedby="emailHelp" placeholder="Nombre o razon social">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rut">RUT(*)</label>
+                                    <input type="text" name="rut" class="form-control" id="rut"
+                                        placeholder="11222333-k" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono Movil</label>
+                                    <input type="phone" name="telefono" class="form-control phone" id="telefono"
+                                    placeholder="+56911117777" pattern="[+]56[0-9]{1,1}[0-9]{8,8}" title="Ejemplo +56911119999 sin espacios" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email(*)</label>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        aria-describedby="emailHelp" placeholder="Email"
+                                        pattern="[a-z0-9._-]+@[a-z0-9.]+\.[a-z0-9]{2,3}" title="Correo con minúsculas"
+                                        onfocus="validaMismoCorreo()"
+                                        onblur="validaMismoCorreo()"
+                                        onkeydown="validaMismoCorreo()"
+                                        onkeypress="validaMismoCorreo()"
+                                        onkeyup="validaMismoCorreo()" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="repeatEmail">Repetir Email</label>
+                                    <input type="email" name="repeatEmail" class="form-control" id="repeatEmail"
+                                        placeholder="Repetir Email"
+                                        onfocus="validaMismoCorreo()"
+                                        onblur="validaMismoCorreo()"
+                                        onkeydown="validaMismoCorreo()"
+                                        onkeypress="validaMismoCorreo()"
+                                        onkeyup="validaMismoCorreo()">
+                                </div>   
+                                <div class="form-group mb-2">
+                                    <i class="fa fa-times fa-2x" aria-hidden="true" id="correoMal" style="visibility: hidden; color: crimson"></i>
+                                    <i class="fa fa-check fa-2x" aria-hidden="true" id="correoBien" style="visibility: hidden; color: cadetblue"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">Contraseña(*)</label>
+                                    <input type="password" name="password" class="form-control phone" id="pass"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block p-3">Registrarme</button>
+                            </div>
+                            <div class="col-8">
+                                <ol class="pasos">
+                                    <li><a href="#" class="active"></a> </li>
+                              
+                                </ol>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-5"
+                        style="background-image: url(https://images.unsplash.com/photo-1554232456-8727aae0cfa4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80); background-size: cover;">
+
+                    </div>
+
+                </div>
+            </div>
+            <!--************************
+        FIN CONTENIDO DEL INFORME
+    *****************************-->
+        </div>
+
+    </main>
+
+    <!--*SCRIPT*-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/localization/messages_es.min.js"></script>
+    <script src="assets/js/jquery-validate-rut.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;68f2281d9ad02df4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;si&quot;:10}"></script> -->
+
+</body>
+
+</html>

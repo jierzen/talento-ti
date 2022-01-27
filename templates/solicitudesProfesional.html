@@ -1,0 +1,57 @@
+    <!--OFERTA INFO-->
+    <hr>
+    <div class="col-12 mb-3">
+        <?php foreach($_SESSION['solicitudes'] as $sol){
+            ?>
+            <div class="card">
+                  <div class="card-body">
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <hgroup>
+                            <h6 class="mb-2">Solicitud ID: <?php print_r($sol['id_solicitud']) ?> </h6>
+                            <h3>Para oferta ID: <?php print_r($sol['id_oferta']) ?></h3>
+                        </hgroup>
+                      </div>
+                    </div>
+                    <?php foreach($_SESSION['ofertasSolicitadas'] as $ofSol){
+                        if($ofSol['id_oferta'] == $sol['id_oferta']){
+                            ?>
+                            <p>Titulo: <?php print_r($ofSol['nombre_oferta']) ?></p>
+                            <p>Descripcion: <?php print_r($ofSol['descripcion']) ?></p>
+                            <?php
+                        }else{
+                            continue;
+                        }
+                    } ?>
+                    <p>Estado: <?php
+                         
+                         switch ($sol['id_estado']) {
+                            case $ESTADO_SOLICITUD_PENDIENTE:
+                                print_r('Pendiente');
+                                break;
+                            case $ESTADO_SOLICITUD_SUSPENDIDA:
+                            print_r('Suspendida');
+                                break;
+                            case $ESTADO_SOLICITUD_FINALIZADA:
+                            print_r('Finalizada');
+                                break;
+                        }
+                        
+                         ?></p>
+                      <div class="footer-oferta d-flex justify-content-between">
+                      <span>
+                        <b>Fecha de Solicitud</b>
+                        <h5><?php 
+                          $time = strtotime($sol['fecha_solicitud']);
+                          $newformat = date('d F Y', $time);
+                          echo $newformat;   
+                          ?></h5>
+                      </span>
+
+                      </div><!--//FOOTER-OFERTA-->
+                  </div><!--//CARD-BODY-->
+              </div><!--//CARD-->
+            <?php
+        } ?>
+
+    </div><!--//COL-->

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Talento TI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+
+    <meta name="robots" content="noindex, follow">
+<?php
+    if (!isset($_SESSION['usuario']) || session_status() === PHP_SESSION_NONE) {
+        //print_r('No hay sesion');
+        
+    }else{
+    //print("<pre>".print_r($_SESSION['usuario'],true)."</pre><br>");
+    }
+?>
+
+
+</head>
+
+<body class="d-flex justify-content-center " id="login">
+    <div class="wrapper">
+        <!--************************
+        CONTENIDO DEL INFORME
+    *****************************-->
+        <div id="content" class="text-light">
+            <div class="row justify-content-center">
+                <div class="col-md-4 text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <img src="assets/images/logo.svg" alt="Talento TI"
+                                class="img-fluid p-4 mb-3 mt-5 align-self-center">
+                            <div class="d-flex flex-column mb-4">
+                                <h4>Aliquam exx enim, interdum ac </h4>
+                                <p>Duis sapien lectus, dapibus in orci fringilla, pellentesque tempor tellus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="home" method="post" class="row justify-content-center">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <input type="text" name="email" class="form-control" id="exampleInputName"
+                                    aria-describedby="emailHelp" placeholder="Correo" value="empresa@test.cl" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" id="exampleInputApellido1"
+                                    placeholder="Password" value="123" required>
+                            </div>
+                            <button type="submit" class="btn btn-default btn-block">Ingresar</button>
+                            <hr>
+                            <small><a href="#" class="text-light">Olvidé mi contraseña</a></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************
+        FIN CONTENIDO DEL INFORME
+    *****************************-->
+    <!--*SCRIPT*-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/localization/messages_es.min.js"></script>
+    <!-- <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;68f2281d9ad02df4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;si&quot;:10}"></script> -->
+
+</body>
+</html>

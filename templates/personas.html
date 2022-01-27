@@ -1,0 +1,474 @@
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-7">
+        <h2>
+            <?= $template ?>
+        </h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+            Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+        <button data-toggle="modal" data-target="#AddPersonas"
+            class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i
+                class="fa fa-building fa-2x mr-3"></i> Crear Personas</button>
+    </div>
+
+</div>
+<!--//ROW-->
+<hr>
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+                <h2>Listado de Profesionales </h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit
+                    malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+                <table class="table table-striped dataTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>RUT</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($personas as $per): ?>
+                        <tr>
+                            <td>
+                                <?= $per['id_persona'] ?>
+                            </td>
+                            <td>
+                                <?= $per['rut'] ?>
+                            </td>
+                            <td>
+                                <?= $per['nombre_razonsocial'] ?>
+                            </td>
+                            <td>
+                                <?= $per['apellidos'] ?>
+                            </td>
+                            <td>
+                                <?= $per['email_usuario'] ?>
+                            </td>
+                            <td>
+                                <?= $per['telefono'] ?>
+                            </td>
+                            <td>
+                                <button type="button" name="button" class="btn btn-light btn-sm"> <i
+                                        class="fa fa-eye"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#editPersona"
+                                    data-id="<?= $per['id_persona'] ?>" data-nombre-razonsocial="<?= $per['nombre_razonsocial'] ?>" 
+                                    data-apellidos="<?= $per['apellidos'] ?>" data-rut="<?= $per['rut'] ?>"
+                                    data-pais="<?= $per['pais'] ?>" data-telefono="<?= $per['telefono'] ?>"
+                                    data-email="<?= $per['email'] ?>" data-telefono="<?= $per['telefono'] ?>"
+                                    data-direccion="<?= $per['direccion'] ?>" data-id-tipo-persona="<?= $per['id_tipo_persona'] ?>"
+                                    data-ciudad="<?= $per['ciudad'] ?>" data-region="<?= $per['region'] ?>" data-id-usuario="<?= $per['id_usuario'] ?>"> <i
+                                        class="fa fa-pencil"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#deletePersona"
+                                data-id="<?= $per['id_persona'] ?>" data-nombre-razonsocial="<?= $per['nombre_razonsocial'] ?>" 
+                                data-apellidos="<?= $per['apellidos'] ?>" > <i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+                <h2>Listado de Empresas </h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit
+                    malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+                <table class="table table-striped dataTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>RUT</th>
+                            <th>Razon Social</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($empresas as $emp): ?>
+                        <tr>
+                            <td>
+                                <?= $emp['id_persona'] ?>
+                            </td>
+                            <td>
+                                <?= $emp['rut'] ?>
+                            </td>
+                            <td>
+                                <?= $emp['nombre_razonsocial'] ?>
+                                <?= $emp['apellidos'] ?>
+                            </td>
+                            <td>
+                                <?= $emp['email_usuario'] ?>
+                            </td>
+                            <td>
+                                <?= $emp['telefono'] ?>
+                            </td>
+                            <td>
+                                <button type="button" name="button" class="btn btn-light btn-sm"> <i
+                                        class="fa fa-eye"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#editPersona"
+                                data-id="<?= $emp['id_persona'] ?>" data-nombre-razonsocial="<?= $emp['nombre_razonsocial'] ?>" 
+                                data-apellidos="<?= $emp['apellidos'] ?>" data-rut="<?= $emp['rut'] ?>"
+                                data-pais="<?= $emp['pais'] ?>" data-telefono="<?= $emp['telefono'] ?>"
+                                data-email="<?= $emp['email'] ?>" data-telefono="<?= $emp['telefono'] ?>"
+                                data-direccion="<?= $emp['direccion'] ?>" data-id-tipo-persona="<?= $emp['id_tipo_persona'] ?>"
+                                data-ciudad="<?= $emp['ciudad'] ?>" data-region="<?= $emp['region'] ?>" data-id-usuario="<?= $emp['id_usuario'] ?>"> <i
+                                        class="fa fa-pencil"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#deletePersona"
+                                data-id="<?= $emp['id_persona'] ?>" data-nombre-razonsocial="<?= $emp['nombre_razonsocial'] ?>" 
+                                data-apellidos="<?= $emp['apellidos'] ?>" > <i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--*****MODAL*******-->
+<div class="modal fade" id="AddPersonas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_create_personas" name="form_create_personas" action="personas/create" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Persona</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="nombre_razonsocial" class="form-label">Nombre o Razon Social</label>
+                                        <input type="text" id="nombre_razonsocial" name="nombre_razonsocial"
+                                            placeholder="Nombre o Razon Social" value=""
+                                            class="form-control input-border" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="apellidos" class="form-label">Apellidos</label>
+                                        <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"
+                                            value="" class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="rut" class="form-label">RUT</label>
+                                        <input type="text" id="rut" name="rut" placeholder="RUT" value=""
+                                            class="form-control input-border" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="direccion" class="form-label">Direccion</label>
+                                        <input type="text" id="direccion" name="direccion" placeholder="Direccion"
+                                            value="" class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="comuna" class="form-label">Comuna</label>
+                                        <input type="text" id="comuna" name="comuna" placeholder="Comuna" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="ciudad" class="form-label">Ciudad</label>
+                                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="region" class="form-label">Region</label>
+                                        <input type="text" id="region" name="region" placeholder="Region" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="pais" class="form-label">Pais</label>
+                                        <input type="text" id="pais" name="pais" placeholder="Pais" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="telefono" class="form-label">Telefono</label>
+                                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="text" id="email" name="email" placeholder="Email" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="id_tipo_persona" class="form-label">Tipo de Persona</label>
+                                        <select id="id_tipo_persona" name="id_tipo_persona"
+                                            class="form-control input-border">
+                                            <?php foreach($tipos_personas as $tp): ?>
+                                            <option value="<?= $tp['id_tipo_persona'] ?>">
+                                                <?= $tp['descripcion_tipo'] ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="id_usuario" class="form-label">Usuario</label>
+                                        <select id="id_usuario" name="id_usuario" class="form-control input-border"
+                                            >
+                                            <?php foreach($usuarios as $u): ?>
+                                            <option value="<?= $u['id_usuario'] ?>">
+                                                <?= $u['email'] ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--*****MODAL*******-->
+<div class="modal fade" id="editPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_edit_personas" name="form_edit_personas" action="personas/update" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Persona</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="nombre_razonsocial" class="form-label">Nombre o Razon Social</label>
+                                        <input type="text" id="nombre_razonsocial" name="nombre_razonsocial"
+                                            placeholder="Nombre o Razon Social" value=""
+                                            class="form-control input-border" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="apellidos" class="form-label">Apellidos</label>
+                                        <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"
+                                            value="" class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="rut" class="form-label">RUT</label>
+                                        <input type="text" id="rut" name="rut" placeholder="RUT" value=""
+                                            class="form-control input-border" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="direccion" class="form-label">Direccion</label>
+                                        <input type="text" id="direccion" name="direccion" placeholder="Direccion"
+                                            value="" class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="comuna" class="form-label">Comuna</label>
+                                        <input type="text" id="comuna" name="comuna" placeholder="Comuna" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="ciudad" class="form-label">Ciudad</label>
+                                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="region" class="form-label">Region</label>
+                                        <input type="text" id="region" name="region" placeholder="Region" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="pais" class="form-label">Pais</label>
+                                        <input type="text" id="pais" name="pais" placeholder="Pais" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="telefono" class="form-label">Telefono</label>
+                                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="text" id="email" name="email" placeholder="Email" value=""
+                                            class="form-control input-border" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="id_tipo_persona" class="form-label">Tipo de Persona</label>
+                                        <select id="id_tipo_persona" name="id_tipo_persona"
+                                            class="form-control input-border" disabled>
+                                            <?php foreach($tipos_personas as $tp): ?>
+                                            <option value="<?= $tp['id_tipo_persona'] ?>">
+                                                <?= $tp['descripcion_tipo'] ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="id_usuario" class="form-label">Usuario</label>
+                                        <select id="id_usuario" name="id_usuario" class="form-control input-border">
+                                            <?php foreach($usuarios as $u): ?>
+                                            <option value="<?= $u['id_usuario'] ?>">
+                                                <?= $u['email'] ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deletePersona" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form id="form_delete_personas" name="form_delete_personas" action="" method="post">
+                <div class="modal-body text-center">
+                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                        esta persona?
+                    </h5>
+                    <hr>
+                    <h2><b>
+                            <span id="modal-delete-nombre-razonsocial"></span> <span id="modal-delete-apellidos"></span>
+                        </b></h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" tabindex="-1" class="btn btn-outline-secondary"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

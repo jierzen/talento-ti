@@ -1,0 +1,89 @@
+<?php 
+//print("<pre>".print_r($_SESSION,true)."</pre><br>");
+?>
+<!-- <hr>
+<h2>Crear Oferta Laboral</h2>
+
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-12 ">
+        <form action="registrarOferta" method="post">
+            <input type="text" name="nombre_oferta" id="myInput" placeholder="nombre_oferta" required>
+            <textarea type="textarea" name="descripcion" id="myInput" placeholder="descripcion" rows="4" cols="50" required></textarea>
+            <input type="datetime-local" name="fecha_oferta" id="myInput" placeholder="fecha_oferta" required>
+            <input type="text" name="comentarios" id="myInput" placeholder="comentarios">
+            <input type="text" name="url_documento" id="myInput" placeholder="url_documento" required>
+            <input type="text" name="id_proyecto" id="myInput" placeholder="id_proyecto" required>
+            <input type="text" name="tipo_proyecto" id="myInput" placeholder="tipo_proyecto" required>
+            <hr>
+            <div class="checkbox-group required" oninvalid="this.setCustomValidity('completa este campo')">
+                <?php foreach($_SESSION['habilidades'] as $hab){ ?>
+                <input type="checkbox" id="<?= $hab['id_habilidad'] ?>" name="habilidad_<?= $hab['id_habilidad'] ?>" value="<?= $hab['nombre_habilidad'] ?>">
+                <label for="<?= $hab['id_habilidad'] ?>"><?php print_r($hab['nombre_habilidad']) ?></label><br>
+                <?php } ?>
+            </div>
+            <button type="submit" id="crearOferta" hidden></button>
+        </form>
+        <hr>
+    </div>
+    <a href="javascript:;" class="btn btn-default" onclick="funcionRequiredCheckBoxGroup()">Crear Oferta</a>
+</div> -->
+<div class="content">
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarOferta" method="post" id="formCrearOferta" class="row justify-content-between">
+          <h4 class="col-md-12">Crear Oferta Laboral</h4>
+          <div class="col-md-6">
+              <hr class="mb-6">
+            <div class="mb-3">
+              <label for="nombre_oferta" class="form-label">Título</label>
+              <input type="text" name="nombre_oferta" class="form-control input-border" id="nombre_oferta" placeholder="Título de la oferta" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripció</label>
+              <textarea type="textarea" name="descripcion" class="form-control input-border" id="descripcion" placeholder="Descripcion de la oferta" rows="4" cols="50" required></textarea>
+            </div>
+            
+              
+              <input type="text" name="fecha_oferta" value="<?= date('Y-m-d H:i:s') ?>" hidden required>
+            
+            <div class="mb-3">
+              <label for="comentarios" class="form-label">Comentarios</label>
+              <input type="text" name="comentarios" class="form-control input-border" id="comentarios" placeholder="Comentarios" required>
+            </div>
+            
+            
+          </div>
+		  <div class="col-md-6">
+		  <div class="mb-3">
+            <hr class="mb-6">
+              <label for="url_documento" class="form-label">URL Documento</label>
+              <input type="text" name="url_documento" class="form-control input-border" id="url_documento" placeholder="URL del documento" required>
+            </div>
+            <div class="mb-3">
+              <label for="id_proyecto" class="form-label">ID Proyecto</label>
+              <input type="text" name="id_proyecto" class="form-control input-border" id="id_proyecto" placeholder="Proyecto" required>
+            </div>
+            <div class="mb-3">
+              <label for="tipo_proyecto" class="form-label">Tipo de Proyecto</label>
+              <input type="text" name="tipo_proyecto" class="form-control input-border" id="tipo_proyecto" placeholder="Tipo de proyecto" required>
+            </div>
+            <label class="form-label">Habilidades Requeridas</label>
+            <div class="form-check required mb-3" oninvalid="this.setCustomValidity('completa este campo')">
+                <?php foreach($_SESSION['habilidades'] as $hab){ ?>
+                <input type="checkbox" class="form-check-input" id="<?= $hab['id_habilidad'] ?>" name="habilidad_<?= $hab['id_habilidad'] ?>" value="<?= $hab['nombre_habilidad'] ?>">
+                <label for="<?= $hab['id_habilidad'] ?>"><?php print_r($hab['nombre_habilidad']) ?></label><br>
+                <?php } ?>
+            </div>
+          </div>
+		  
+        </form>
+        </div><!--//CARD-BODY-->
+        <div class="row">
+            <div class="col-12 text-right">
+              <hr>
+              <button type="submit" class="btn btn-outline-success p-3 px-5" form="formCrearOferta">Crear Oferta</button>
+                <!-- <a href="javascript:;"  onclick="funcionRequiredCheckBoxGroup()"></a> -->
+            </div>
+        </div>
+    </div><!--//CARD-->
+</div><!--//ROW-->     

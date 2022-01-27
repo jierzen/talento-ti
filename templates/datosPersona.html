@@ -1,0 +1,216 @@
+<?php 
+//print("<pre>".print_r($_SESSION,true)."</pre><br>");
+$id_persona = $_SESSION['persona'][0]['id_persona'];
+$nombre_razonsocial = $_SESSION['persona'][0]['nombre_razonsocial'];
+$apellidos = $_SESSION['persona'][0]['apellidos'];
+$nombreFull = $nombre_razonsocial.' '.$apellidos;
+$id_usuario = $_SESSION['persona'][0]['id_usuario']; 
+$rut = $_SESSION['persona'][0]['rut'];
+$direccion = $_SESSION['persona'][0]['direccion'];
+$comuna = $_SESSION['persona'][0]['comuna']; 
+$ciudad = $_SESSION['persona'][0]['ciudad'];
+$region = $_SESSION['persona'][0]['region'];
+$pais = $_SESSION['persona'][0]['pais'];
+$telefono = $_SESSION['persona'][0]['telefono'];
+$email = $_SESSION['persona'][0]['email'];
+$id_tipo_persona = $_SESSION['persona'][0]['id_tipo_persona'];
+$sitio_web = $_SESSION['persona'][0]['sitio_web'];
+$giro = $_SESSION['persona'][0]['giro'];
+
+$id_usuario = $_SESSION['usuario'][0]['id_usuario'];
+$email = $_SESSION['usuario'][0]['email'];
+$password = $_SESSION['usuario'][0]['password'];
+?>
+<hr>
+<?php if($id_tipo_persona == $TIPO_PERSONA_EMPRESA){ ?>
+<div class="content">
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarDatosUsuario" method="post" id="datosEmpresa" class="row justify-content-between">
+          <div class="col-md-6">
+            <h4>Datos de la Empresa</h4>
+            <hr class="mb-4">
+            <div class="mb-3">
+              <label for="InputName" class="form-label">Nombre Empresa</label>
+              <input type="text" name="nombre_razonsocial" value="<?= $nombre_razonsocial ?>" class="form-control input-border" id="InputName" placeholder="Nombre Empresa" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Razón Social</label>
+              <input type="text" name="apellidos" value="<?= $apellidos ?>" class="form-control input-border" id="exampleFormControlInput1" placeholder="Razón Social" required>
+            </div>
+            <div class="mb-3">
+              <label for="giro" class="form-label">Giro</label>
+              <input type="text" name="giro" value="<?= $giro ?>" class="form-control input-border" id="giro" placeholder="Giro Empresa" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo</label>
+              <input type="text" name="email" value="<?= $email ?>" class="form-control input-border" id="email" placeholder="empresa@gmail.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="InputPass" class="form-label">Contraseña</label>
+              <input type="password" name="password" value="<?= $password ?>" class="form-control input-border" id="InputPass" placeholder="Contraseña" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h4>Datos de Contacto</h4>
+            <hr class="mb-4">
+            <!--group input-->
+            <div class="row no-gutters">
+              <div class="col-md-5">
+                <div class="form-group mr-2">
+                  <label for="SelectCountry" class="form-label">País</label>
+                  <select name="pais" class="form-control input-border" id="SelectCountry" required>
+                    <option disabled>Seleccione pais...</option>
+                    <option value="chile" selected>Chile</option>
+                  </select>
+                  </div>
+            </div><!--//COL-->
+            <div class="col-md-7">
+                  <div class="form-group">
+                    <label for="SelectRegion" class="form-label">Región</label>
+                    <select name="region" class="form-control input-border" id="regiones" required></select>
+                  </div>
+              </div><!--//COL-->
+            </div><!--//ROW-->
+            <!--***-->
+
+            <!--group input-->
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <div class="form-group mr-2">
+                  <label for="ciudad" class="form-label">Ciudad</label>
+                  <input type="text" name="ciudad" value="<?= $ciudad ?>" class="form-control input-border" id="ciudad" placeholder="Ciudad" required>
+                  </div>
+              </div><!--//COL-->
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="SelectArea" class="form-label">Comuna</label>
+                    <select name="comuna" class="form-control input-border" id="comunas" required></select>
+                  </div>
+                </div><!--//COL-->
+              </div><!--//ROW-->
+              <!--***-->
+              <div class="mb-3">
+                <label for="InputAddress" class="form-label">Dirección</label>
+                <input type="text" name="direccion" value="<?= $direccion ?>" class="form-control input-border" id="InputAddress" placeholder="Dirección" required>
+              </div>  
+              <div class="mb-3">
+                <label for="sitio_web" class="form-label">Sitio Web</label>
+                <input type="text" name="sitio_web" value="<?= $sitio_web ?>" class="form-control input-border" id="sitio_web" placeholder="www.example.cl" required>
+              </div>  
+              <div class="form-group">
+                <label for="text">Teléfono Movil</label>
+                <div class="input-group">
+                  <input id="text" name="telefono" value="<?= $telefono ?>" type="phone" class="form-control input-border" pattern="[+]56[0-9]{1,1}[0-9]{8,8}" title="Ejemplo +56911119999 sin espacios" required>
+                </div>
+              </div>
+          </div>
+        </form>
+          <div class="row">
+            <div class="col-12 text-right">
+            <hr>
+            <a href="getHome" class="btn btn-outline-secondary p-3 px-5">Cancelar</a>
+              <button type="submit" class="btn btn-outline-success p-3 px-5" form="datosEmpresa">Guardar</button>
+            </div>
+          </div>
+        </div><!--//CARD-BODY-->
+    </div><!--//CARD-->
+</div><!--//ROW-->
+<?php } ?>
+
+<?php if($id_tipo_persona == $TIPO_PERSONA_PROFESIONAL){ ?>
+<div class="content">
+  <div class="card">
+    <div class="card-body">
+      <form action="registrarDatosUsuario" method="post" id="datosProfesional" class="row justify-content-between">
+        <div class="col-md-6">
+          <h4>Datos Personales</h4>
+          <hr class="mb-4">
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="InputName" class="form-label">Nombre</label>
+            <input type="text" name="nombre_razonsocial" value="<?= $nombre_razonsocial ?>" class="form-control input-border" id="InputName" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="InputApe" class="form-label">Apellidos</label>
+              <input type="text" name="apellidos" value="<?= $apellidos ?>" class="form-control input-border" id="InputApe" placeholder="Apellidos" required>
+            </div>
+            <div class="form-group">
+              <label for="giro" class="form-label">Giro</label>
+              <input type="text" name="giro" value="<?= $giro ?>" class="form-control input-border" id="giro" placeholder="Mi giro" required>
+            </div>
+            <div class="form-group">
+              <label for="InputEmail" class="form-label">Correo</label>
+              <input type="email" name="email" value="<?= $email ?>" class="form-control input-border" id="InputEmail" placeholder="Correo" required>
+            </div>
+            <div class="form-group">
+              <label for="InputPass" class="form-label">Contraseña</label>
+              <input type="password" name="password" value="<?= $password ?>" class="form-control input-border" id="InputPass" placeholder="Contraseña" required>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Datos de Contacto</h4>
+          <hr class="mb-4">
+          <!--group input-->
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <div class="form-group mr-2">
+                <label for="SelectCountry" class="form-label">País</label>
+                <select name="pais"  class="form-control input-border" id="SelectCountry" required>
+                  <option disabled>Seleccione pais...</option>
+                  <option value="chile" selected>Chile</option>
+                </select>
+                </div>
+            </div><!--//COL-->
+            <div class="col-md-7">
+                <div class="form-group">
+                  <label for="SelectRegion" class="form-label">Región</label>
+                  <select name="region" class="form-control input-border" id="regiones" required></select>
+                </div>
+            </div><!--//COL-->
+          </div><!--//ROW-->
+          <!--***-->
+          <!--group input-->
+          <div class="row no-gutters">
+            <div class="col-md-6">
+              <div class="form-group mr-2">
+                <label for="SelectCity" class="form-label">Ciudad</label>
+                <input type="text" name="ciudad" value="<?= $ciudad ?>" class="form-control input-border" id="ciudad" placeholder="Ciudad" required>              </div>
+            </div><!--//COL-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="SelectArea" class="form-label">Comuna</label>
+                  <select name="comuna" class="form-control input-border" id="comunas" required></select>
+                </div>
+              </div><!--//COL-->
+          </div><!--//ROW-->
+          <!--***-->
+          <div class="form-group">
+            <label for="InputAddress" class="form-label">Dirección</label>
+            <input type="text" name="direccion" value="<?= $direccion ?>" class="form-control input-border" id="InputAddress" placeholder="Dirección" required>
+          </div>
+          <div class="form-group">
+            <label for="sitio_web" class="form-label">Sitio Web</label>
+            <input type="text" name="sitio_web" value="<?= $sitio_web ?>" class="form-control input-border" id="sitio_web" placeholder="www.misitio.org" required>
+          </div>
+          <div class="form-group">
+              <label for="text">Teléfono Movil</label>
+              <div class="input-group">
+                <input id="text" name="telefono" value="<?= $telefono ?>" type="phone" class="form-control input-border" pattern="[+]56[0-9]{1,1}[0-9]{8,8}" title="Ejemplo +56911119999 sin espacios" required>
+              </div>
+            </div>
+        </div>
+    </form>
+      <div class="row">
+        <div class="col-12 text-right">
+          <hr>
+          <a href="getHome" class="btn btn-outline-secondary p-3 px-5">Cancelar</a>
+          <button type="submit" class="btn btn-outline-success p-3 px-5" form="datosProfesional">Guardar</button>
+        </div>
+      </div>
+    </div><!--//CARD-BODY-->
+  </div><!--//CARD-->
+</div><!--//ROW-->
+<?php } ?>
+

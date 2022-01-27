@@ -1,0 +1,343 @@
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-7">
+        <h2>
+            <?= $template ?>
+        </h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+          <button data-toggle="modal" data-target="#AddOferta"  class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i class="fa fa-id-badge fa-2x mr-3"></i> Crear Ofertas</button>
+    </div>
+
+</div><!--//ROW-->
+<hr>
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+
+
+                
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+                <hr>
+                <?php foreach($ofertas as $of): ?>
+                <div class="ofertas-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="ofertas-id">
+                        <a href="ofertas/<?= $of['id_oferta'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editModal<?= $of['id_oferta'] ?>">
+                            <span>
+                                <?= $of['id_oferta'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="ofertas-nombre-oferta">
+                        <span>
+                            <?= $of['nombre_oferta'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-descripcion">
+                        <span>
+                            <?= $of['descripcion'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-fecha-oferta">
+                        <span>
+                            <?= $of['fecha_oferta'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-comentarios">
+                        <span>
+                            <?= $of['comentarios'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-url">
+                        <span>
+                            <?= $of['url_documento'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-id-proyecto">
+                        <span>
+                            <?= $of['id_proyecto'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-tipo-proyecto">
+                        <span>
+                            <?= $of['tipo_proyecto'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-delete">
+                        <a href="ofertas/<?= $of['id_oferta'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal<?= $of['id_oferta'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="ofertas/delete/<?= $of['id_oferta'] ?>" method="post">
+                        <div class="modal fade" id="deleteModal<?= $of['id_oferta'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                                            esta oferta?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $of['nombre_oferta'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editModal<?= $of['id_oferta'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_oferta_<?= $of['id_oferta'] ?>" name="form_oferta_<?= $of['id_oferta'] ?>"
+                                action="ofertas/update/<?= $of['id_oferta'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar oferta</h5>
+                                        <hr>
+                                        <input type="text" id="nombre_oferta" name="nombre_oferta"
+                                            placeholder="Nombre de la oferta" value="<?= $of['nombre_oferta'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion"
+                                            value="<?= $of['descripcion'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="datetime" id="fecha_oferta" name="fecha_oferta"
+                                            placeholder="<?php echo date('d-m-Y h:i:sa'); ?>"
+                                            value="<?= $of['fecha_oferta'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="comentarios" name="comentarios"
+                                            placeholder="Comentarios de la oferta" value="<?= $of['comentarios'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="url_documento" name="url_documento"
+                                            placeholder="https://www.example.com/" value="<?= $of['url_documento'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="id_proyecto" name="id_proyecto"
+                                            placeholder="ID del proyecto" value="<?= $of['id_proyecto'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="tipo_proyecto" name="tipo_proyecto"
+                                            placeholder="Tipo de proyecto" value="<?= $of['tipo_proyecto'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="ofertas/create" method="post">
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Crear Oferta</h5>
+                                    <hr>
+
+                                    <input type="text" id="nombre_oferta" name="nombre_oferta"
+                                        placeholder="Nombre de la oferta" value="" class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion"
+                                        value="" class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="datetime" id="fecha_oferta" name="fecha_oferta"
+                                        placeholder="<?php echo date('Y-m-d'); ?>" value=""
+                                        class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="comentarios" name="comentarios"
+                                        placeholder="Comentarios de la oferta" value=""
+                                        class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="url_documento" name="url_documento"
+                                        placeholder="https://www.example.com/" value=""
+                                        class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="id_proyecto" name="id_proyecto" placeholder="id del proyecto"
+                                        value="" class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="tipo_proyecto" name="tipo_proyecto"
+                                        placeholder="Tipo de proyecto" value="" class="form-control form-control-lg">
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="txt-28">Ofertas Personas <br><b>
+
+                </b></h2>
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createOPModal">Nuevo</a>
+                <hr>
+                <?php foreach($ofertas_personas as $op): ?>
+                <div class="ofertas-personas-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="ofertas-personas-id">
+                        <a href="ofertas_personas/<?= $op['id_oferta_persona'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editOPModal<?= $op['id_oferta_persona'] ?>">
+                            <span>
+                                <?= $op['id_oferta_persona'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="ofertas-personas-id-oferta">
+                        <span>
+                            <?= $op['oferta'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-personas-id-persona">
+                        <span>
+                            <?= $op['persona'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="ofertas-personas-delete">
+                        <a href="ofertas_personas/<?= $op['id_oferta'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteOPModal<?= $op['id_oferta_persona'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="ofertas_personas/delete/<?= $op['id_oferta_persona'] ?>" method="post">
+                        <div class="modal fade" id="deleteOPModal<?= $op['id_oferta_persona'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                                            esta oferta-persona?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $op['id_oferta_persona'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editOPModal<?= $op['id_oferta_persona'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_oferta_<?= $op['id_oferta_persona'] ?>" name="form_oferta_<?= $op['id_oferta_persona'] ?>"
+                                action="ofertas_personas/update/<?= $op['id_oferta_persona'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar oferta-persona</h5>
+                                        <hr>
+                                        <select id="id_oferta" name="id_oferta" class="form-control form-control-lg" disabled>
+                                            <?php foreach($ofertas as $o): ?>
+                                            <option value="<?= $o['id_oferta'] ?>" <?php echo ($op['id_oferta'] == $o['id_oferta'] ?  "selected" :  ""); ?>>
+                                                <?= $o['nombre_oferta'] ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                            <hr>
+                                        <select id="id_persona" name="id_persona" class="form-control form-control-lg" disabled>
+                                            <?php foreach($personas as $p): ?>
+                                            <option value="<?= $p['id_persona'] ?>" <?php echo ($op['id_persona'] == $p['id_persona'] ?  "selected" :  ""); ?>><?= $p['nombre_razonsocial'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="ofertas_personas/create" method="post">
+                    <div class="modal fade" id="createOPModal" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Crear Oferta</h5>
+                                    <hr>
+                                    <select id="id_oferta" name="id_oferta" class="form-control form-control-lg">
+                                        <?php foreach($ofertas as $o): ?>
+                                        <option value="<?= $o['id_oferta'] ?>" <?php echo ($op['id_oferta'] == $o['id_oferta'] ?  "selected" :  ""); ?>>
+                                            <?= $o['nombre_oferta'] ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                        <hr>
+                                    <select id="id_persona" name="id_persona" class="form-control form-control-lg">
+                                        <?php foreach($personas as $p): ?>
+                                        <option value="<?= $p['id_persona'] ?>" <?php echo ($op['id_persona'] == $p['id_persona'] ?  "selected" :  ""); ?>><?= $p['nombre_razonsocial'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <hr>
+                            </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

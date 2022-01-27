@@ -1,0 +1,105 @@
+
+
+    <main class="container">
+        <div class="pt-5">
+            <h2 class="txt-28">Bienvenido <br><b>
+
+                </b></h2>
+            <a href="#" class="" data-bs-toggle="modal" data-bs-target="#editModal">Nuevo</a>
+            <hr>
+            <?php foreach($habilidades_personas as $hp): ?>
+            <div class="users-list d-flex justify-content-between align-items-center mb-3">
+                <div class="users-id">
+                    <a href="habilidades_personas/read/<?= $hp['id_habilidad_persona'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#editModal<?= $hp['id_habilidad_persona'] ?>">
+                        <span>
+                            <?= $hp['id_habilidad_persona'] ?>
+                        </span>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $hp['id_persona'] ?>
+                    </span>
+                    <p></p>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $hp['id_habilidad'] ?>
+                    </span>
+                    <p></p>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $hp['nivel'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="device-delete">
+                    <a href="habilidades_personas/read/<?= $hp['id_habilidad_persona'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<?= $hp['id_habilidad_persona'] ?>">
+                        Delete <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+                <form action="habilidades_personas/delete/<?= $hp['id_habilidad_persona'] ?>" method="post">
+                    <div class="modal fade" id="deleteModal<?= $hp['id_habilidad_persona'] ?>" tabindex="-1"
+                        aria-labelledby="deleteLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar esta
+                                        habilidad persona?
+                                    </h5>
+                                    <hr>
+                                    <h1><b>
+                                            <?= $hp['id_habilidad_persona'] ?>
+                                        </b></h1>
+                                    <hr>
+                                    <h1><b>
+                                            <?= $hp['nivel'] ?>
+                                        </b></h1>
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal fade" id="editModal<?= $hp['id_habilidad_persona'] ?>" tabindex="-1"
+                    aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form id="form_rol_<?= $hp['id_habilidad_persona'] ?>" name="form_rol_<?= $hp['id_habilidad_persona'] ?>"
+                            action="habilidades_personas/update/<?= $hp['id_habilidad_persona'] ?>" method="post">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Editar habilidad persona</h5>
+                                    <hr>
+
+                                    <input type="text" id="nivel" name="nivel" placeholder="Nivel de habilidad"
+                                        value="<?= $hp['nivel'] ?>" class="form-control form-control-lg">
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+        </div>
+    </main>

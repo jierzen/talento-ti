@@ -1,0 +1,46 @@
+<?php 
+//print("<pre>".print_r($_SESSION,true)."</pre><br>");
+$id_persona = $_SESSION['persona'][0]['id_persona'];
+$nombre_razonsocial = $_SESSION['persona'][0]['nombre_razonsocial'];
+$apellidos = $_SESSION['persona'][0]['apellidos'];
+$nombreFull = $nombre_razonsocial.' '.$apellidos;
+$id_usuario = $_SESSION['persona'][0]['id_usuario']; 
+$rut = $_SESSION['persona'][0]['rut'];
+$direccion = $_SESSION['persona'][0]['direccion'];
+$comuna = $_SESSION['persona'][0]['comuna']; 
+$ciudad = $_SESSION['persona'][0]['ciudad'];
+$region = $_SESSION['persona'][0]['region'];
+$pais = $_SESSION['persona'][0]['pais'];
+$telefono = $_SESSION['persona'][0]['telefono'];
+$email = $_SESSION['persona'][0]['email'];
+$id_tipo_persona = $_SESSION['persona'][0]['id_tipo_persona'];
+
+$id_usuario = $_SESSION['usuario'][0]['id_usuario'];
+$email = $_SESSION['usuario'][0]['email'];
+$password = $_SESSION['usuario'][0]['password'];
+
+$nombreFormato = $id_tipo_persona == 2 ? 'Razon Social' : 'Nombre';
+$apellidoFormato = $id_tipo_persona == 2 ? 'Rol' : 'Apellidos';
+?>
+
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-12 ">
+        <form action="registrarDatosUsuario" method="post">
+            <input type="text" name="nombre_razonsocial" value="<?= $nombre_razonsocial ?>" placeholder="<?= $nombreFormato ?>" required>
+            <input type="text" name="apellidos" value="<?= $apellidos ?>" placeholder="<?= $apellidoFormato ?>" required>
+            <input type="text" name="rut" value="<?= $rut ?>" placeholder="Rut" required>
+            <input type="text" name="direccion" value="<?= $direccion ?>" placeholder="Direccion" required>
+            <select name="region" id="regiones" value="<?= $region ?>" required></select>
+            <select name="comuna" id="comunas" value="<?= $comuna ?>" required></select>
+            <input type="text" name="ciudad" value="<?= $ciudad ?>" placeholder="Ciudad" required>
+            <input type="text" name="pais" value="<?= $pais ?>" placeholder="Pais" required>
+            <input type="text" name="telefono" value="<?= $telefono ?>" placeholder="Telefono" required>
+            <hr>
+            <input type="text" name="email" value="<?= $email ?>" placeholder="Correo" required>
+            <input type="text" name="password" value="<?= $password ?>" placeholder="Contraseña" required>
+            <button type="submit" class="btn btn-default">Guardar</button>
+        </form>
+        <hr>
+    </div>
+</div>

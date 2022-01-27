@@ -1,0 +1,931 @@
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-7">
+        <h2>
+            <?= $template ?>
+        </h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+            Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+        <button data-toggle="modal" data-target="#AddHabilidades"
+            class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i
+                class="fa fa-lightbulb-o fa-2x mr-3"></i> Crear Habilidades</button>
+    </div>
+
+</div>
+<!--//ROW-->
+<hr>
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+                <h2>Habilidades Creadas</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit
+                    malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+                <table class="table table-striped dataTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Habilidad</th>
+                            <th>Grupo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($habilidades as $ha): ?>
+                        <tr>
+                            <td>
+                                <?= $ha['id_habilidad'] ?>
+                            </td>
+                            <td>
+                                <?= $ha['nombre_habilidad'] ?>
+                            </td>
+                            <td>
+                                <?= $ha['grupo'] ?>
+                            </td>
+                            <td>
+                                <button type="button" name="button" class="btn btn-light btn-sm"> <i
+                                        class="fa fa-eye"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#editHabilidad"
+                                    data-id="<?= $ha['id_habilidad'] ?>" data-nombre-habilidad="<?= $ha['nombre_habilidad'] ?>"
+                                    data-grupo="<?= $ha['grupo'] ?>"> <i
+                                        class="fa fa-pencil"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#deleteHabilidad"
+                                data-id="<?= $ha['id_habilidad'] ?>" data-nombre-habilidad="<?= $ha['nombre_habilidad'] ?>"
+                                data-grupo="<?= $ha['grupo'] ?>"> <i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!--
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+                <hr>
+                <?php foreach($habilidades as $ha): ?>
+                <div class="habilidades-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="habilidades-id">
+                        <a href="habilidades<?= $ha['id_habilidad'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editModal<?= $ha['id_habilidad'] ?>">
+                            <span>
+                                <?= $ha['id_habilidad'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="habilidades-email">
+                        <span>
+                            <?= $ha['grupo'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="habilidades-email">
+                        <span>
+                            <?= $ha['nombre_habilidad'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+
+                    <div class="device-delete">
+                        <a href="habilidades<?= $ha['id_habilidad'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal<?= $ha['id_habilidad'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="habilidades/delete/<?= $ha['id_habilidad'] ?>" method="post">
+                        <div class="modal fade" id="deleteModal<?= $ha['id_habilidad'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                                            esta
+                                            habilidad?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $ha['nombre_habilidad'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editModal<?= $ha['id_habilidad'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_habilidad_<?= $ha['id_habilidad'] ?>"
+                                name="form_habilidad_<?= $ha['id_habilidad'] ?>"
+                                action="habilidades/update/<?= $ha['id_habilidad'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar habilidad</h5>
+                                        <hr>
+                                        <input type="text" id="grupo" name="grupo" placeholder="Grupo de la habilidad"
+                                            value="<?= $ha['grupo'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="nombre_habilidad" name="nombre_habilidad"
+                                            placeholder="Nombre de la habilidad" value="<?= $ha['nombre_habilidad'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="habilidades/create" method="post">
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Crear Habilidad</h5>
+                                    <hr>
+                                    <input type="text" id="grupo" name="grupo" placeholder="Grupo de la habilidad"
+                                        value="" class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="nombre_habilidad" name="nombre_habilidad"
+                                        placeholder="Nombre de la habilidad" value=""
+                                        class="form-control form-control-lg">
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="txt-28">Habilidades Personas <br><b>
+
+                </b></h2>
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createHPModal">Nuevo</a>
+                <hr>
+                <?php foreach($habilidades_personas as $hp): ?>
+                <div class="users-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="users-id">
+                        <a href="habilidades_personas/<?= $hp['id_habilidad_persona'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editHPModal<?= $hp['id_habilidad_persona'] ?>">
+                            <span>
+                                <?= $hp['id_habilidad_persona'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="users-email">
+                        <span>
+                            <?= $hp['persona'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="users-email">
+                        <span>
+                            <?= $hp['habilidad'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="users-email">
+                        <span>
+                            <?= $hp['nivel'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+    
+                    <div class="device-delete">
+                        <a href="habilidades_personas/<?= $hp['id_habilidad_persona'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal<?= $hp['id_habilidad_persona'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="habilidades_personas/delete/<?= $hp['id_habilidad_persona'] ?>" method="post">
+                        <div class="modal fade" id="deleteModal<?= $hp['id_habilidad_persona'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar esta
+                                            habilidad persona?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $hp['id_habilidad_persona'] ?>
+                                            </b></h1>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $hp['nivel'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editHPModal<?= $hp['id_habilidad_persona'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_rol_<?= $hp['id_habilidad_persona'] ?>" name="form_rol_<?= $hp['id_habilidad_persona'] ?>"
+                                action="habilidades_personas/update/<?= $hp['id_habilidad_persona'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar habilidad persona</h5>
+                                        <hr>
+    
+                                        <select id="id_persona" name="id_persona" class="form-control form-control-lg" disabled>
+                                            <?php foreach($personas as $p): ?>
+                                            <option value="<?= $p['id_persona'] ?>" <?php echo ($hp['id_persona'] == $p['id_persona'] ?  "selected" :  ""); ?>><?= $p['nombre_razonsocial'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <hr>
+                                        <select id="id_habilidad" name="id_habilidad" class="form-control form-control-lg" disabled>
+                                            <?php foreach($habilidades as $h): ?>
+                                            <option value="<?= $h['id_habilidad'] ?>" <?php echo ($hp['id_habilidad'] == $h['id_habilidad'] ?  "selected" :  ""); ?>><?= $h['nombre_habilidad'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <hr>
+            
+                                        <input type="text" id="nivel" name="nivel" placeholder="Nivel de habilidad"
+                                            value="<?= $hp['nivel'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="habilidades_personas/create" method="post">
+                    <div class="modal fade" id="createHPModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-body text-center">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Crear Rol</h5>
+                            <hr>
+    
+                            <select id="id_persona" name="id_persona" class="form-control form-control-lg">
+                                <?php foreach($personas as $p): ?>
+                                <option value="<?= $p['id_persona'] ?>" <?php echo ($hp['id_persona'] == $p['id_persona'] ?  "selected" :  ""); ?>><?= $p['nombre_razonsocial'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <hr>
+                            <select id="id_habilidad" name="id_habilidad" class="form-control form-control-lg">
+                                <?php foreach($habilidades as $h): ?>
+                                <option value="<?= $h['id_habilidad'] ?>" <?php echo ($hp['id_habilidad'] == $h['id_habilidad'] ?  "selected" :  ""); ?>><?= $h['nombre_habilidad'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <hr>
+
+                            <input type="text" id="nivel" name="nivel" placeholder="Nivel de habilidad"
+                                value="" class="form-control form-control-lg">
+                            <hr>
+              </div>
+                          <div class="container">
+                            <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                              <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                              <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                -->
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-7">
+        <h2>
+            <?= $template ?>
+        </h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada.
+            Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+    </div>
+    <div class="col-md-4 col-xs-12 text-right">
+        <button data-toggle="modal" data-target="#AddHabilidadesPersonas"
+            class="btn btn-primary btn-block p-3  d-flex justify-content-center align-items-center"><i
+                class="fa fa-lightbulb-o fa-2x mr-3"></i> Crear Habilidades Personas</button>
+    </div>
+
+</div>
+<div class="row mb-5 mt-5">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+                <h2>Habilidades Personas</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit
+                    malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p>
+                <table class="table table-striped dataTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Profesional</th>
+                            <th>Nombre Habilidad</th>
+                            <th>Nivel</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($habilidades_personas as $hp): ?>
+                        <tr>
+                            <td>
+                                <?= $hp['id_habilidad_persona'] ?>
+                            </td>
+                            <td>
+                                <?= $hp['persona'] ?>
+                            </td>
+                            <td>
+                                <?= $hp['habilidad'] ?>
+                            </td>
+                            <td><?= $hp['nivel'] ?></td>
+                            <td>
+                                <button type="button" name="button" class="btn btn-light btn-sm"> <i
+                                        class="fa fa-eye"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#editHabilidadPersona"
+                                data-id="<?= $hp['id_habilidad_persona'] ?>" data-id-persona="<?= $hp['id_persona'] ?>"
+                                data-id-habilidad="<?= $hp['id_habilidad'] ?>" data-nivel="<?= $hp['nivel'] ?>"> <i
+                                        class="fa fa-pencil"></i></button>
+                                <button type="button" name="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#deleteHabilidadPersona"
+                                data-id="<?= $hp['id_habilidad_persona'] ?>" data-id-persona="<?= $hp['id_persona'] ?>"
+                                data-id-habilidad="<?= $hp['id_habilidad'] ?>" data-nivel="<?= $hp['nivel'] ?>"> <i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!--
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createModal">Nuevo</a>
+                <hr>
+                <?php foreach($habilidades as $ha): ?>
+                <div class="habilidades-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="habilidades-id">
+                        <a href="habilidades<?= $ha['id_habilidad'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editModal<?= $ha['id_habilidad'] ?>">
+                            <span>
+                                <?= $ha['id_habilidad'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="habilidades-email">
+                        <span>
+                            <?= $ha['grupo'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="habilidades-email">
+                        <span>
+                            <?= $ha['nombre_habilidad'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+
+                    <div class="device-delete">
+                        <a href="habilidades<?= $ha['id_habilidad'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal<?= $ha['id_habilidad'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="habilidades/delete/<?= $ha['id_habilidad'] ?>" method="post">
+                        <div class="modal fade" id="deleteModal<?= $ha['id_habilidad'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                                            esta
+                                            habilidad?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $ha['nombre_habilidad'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editModal<?= $ha['id_habilidad'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_habilidad_<?= $ha['id_habilidad'] ?>"
+                                name="form_habilidad_<?= $ha['id_habilidad'] ?>"
+                                action="habilidades/update/<?= $ha['id_habilidad'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar habilidad</h5>
+                                        <hr>
+                                        <input type="text" id="grupo" name="grupo" placeholder="Grupo de la habilidad"
+                                            value="<?= $ha['grupo'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                        <input type="text" id="nombre_habilidad" name="nombre_habilidad"
+                                            placeholder="Nombre de la habilidad" value="<?= $ha['nombre_habilidad'] ?>"
+                                            class="form-control form-control-lg">
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="habilidades/create" method="post">
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Crear Habilidad</h5>
+                                    <hr>
+                                    <input type="text" id="grupo" name="grupo" placeholder="Grupo de la habilidad"
+                                        value="" class="form-control form-control-lg">
+                                    <hr>
+                                    <input type="text" id="nombre_habilidad" name="nombre_habilidad"
+                                        placeholder="Nombre de la habilidad" value=""
+                                        class="form-control form-control-lg">
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="txt-28">Habilidades Personas <br><b>
+
+                </b></h2>
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#createHPModal">Nuevo</a>
+                <hr>
+                <?php foreach($habilidades_personas as $hp): ?>
+                <div class="users-list d-flex justify-content-between align-items-center mb-3">
+                    <div class="users-id">
+                        <a href="habilidades_personas/<?= $hp['id_habilidad_persona'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#editHPModal<?= $hp['id_habilidad_persona'] ?>">
+                            <span>
+                                <?= $hp['id_habilidad_persona'] ?>
+                            </span>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="users-email">
+                        <span>
+                            <?= $hp['persona'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="users-email">
+                        <span>
+                            <?= $hp['habilidad'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+                    <div class="users-email">
+                        <span>
+                            <?= $hp['nivel'] ?>
+                        </span>
+                        <p></p>
+                    </div>
+    
+                    <div class="device-delete">
+                        <a href="habilidades_personas/<?= $hp['id_habilidad_persona'] ?>" class="" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal<?= $hp['id_habilidad_persona'] ?>">
+                            Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <form action="habilidades_personas/delete/<?= $hp['id_habilidad_persona'] ?>" method="post">
+                        <div class="modal fade" id="deleteModal<?= $hp['id_habilidad_persona'] ?>" tabindex="-1"
+                            aria-labelledby="deleteLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar esta
+                                            habilidad persona?
+                                        </h5>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $hp['id_habilidad_persona'] ?>
+                                            </b></h1>
+                                        <hr>
+                                        <h1><b>
+                                                <?= $hp['nivel'] ?>
+                                            </b></h1>
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="editHPModal<?= $hp['id_habilidad_persona'] ?>" tabindex="-1"
+                        aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form id="form_rol_<?= $hp['id_habilidad_persona'] ?>" name="form_rol_<?= $hp['id_habilidad_persona'] ?>"
+                                action="habilidades_personas/update/<?= $hp['id_habilidad_persona'] ?>" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Editar habilidad persona</h5>
+                                        <hr>
+    
+                                        <select id="id_persona" name="id_persona" class="form-control form-control-lg" disabled>
+                                            <?php foreach($personas as $p): ?>
+                                            <option value="<?= $p['id_persona'] ?>" <?php echo ($hp['id_persona'] == $p['id_persona'] ?  "selected" :  ""); ?>><?= $p['nombre_razonsocial'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <hr>
+                                        <select id="id_habilidad" name="id_habilidad" class="form-control form-control-lg" disabled>
+                                            <?php foreach($habilidades as $h): ?>
+                                            <option value="<?= $h['id_habilidad'] ?>" <?php echo ($hp['id_habilidad'] == $h['id_habilidad'] ?  "selected" :  ""); ?>><?= $h['nombre_habilidad'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <hr>
+            
+                                        <input type="text" id="nivel" name="nivel" placeholder="Nivel de habilidad"
+                                            value="<?= $hp['nivel'] ?>" class="form-control form-control-lg">
+                                        <hr>
+                                    </div>
+                                    <div class="container">
+                                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                            <button type="button" class="btn btn-outline-orange"
+                                                data-bs-dismiss="modal">Volver</button>
+                                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <form action="habilidades_personas/create" method="post">
+                    <div class="modal fade" id="createHPModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-body text-center">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Crear Rol</h5>
+                            <hr>
+    
+                            <select id="id_persona" name="id_persona" class="form-control form-control-lg">
+                                <?php foreach($personas as $p): ?>
+                                <option value="<?= $p['id_persona'] ?>" <?php echo ($hp['id_persona'] == $p['id_persona'] ?  "selected" :  ""); ?>><?= $p['nombre_razonsocial'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <hr>
+                            <select id="id_habilidad" name="id_habilidad" class="form-control form-control-lg">
+                                <?php foreach($habilidades as $h): ?>
+                                <option value="<?= $h['id_habilidad'] ?>" <?php echo ($hp['id_habilidad'] == $h['id_habilidad'] ?  "selected" :  ""); ?>><?= $h['nombre_habilidad'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <hr>
+
+                            <input type="text" id="nivel" name="nivel" placeholder="Nivel de habilidad"
+                                value="" class="form-control form-control-lg">
+                            <hr>
+              </div>
+                          <div class="container">
+                            <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                              <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                              <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                -->
+        </div>
+    </div>
+</div>
+
+<!--*****MODAL*******-->
+<div class="modal fade" id="AddHabilidades" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_create_habilidades" name="form_create_habilidades" action="habilidades/create" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Habilidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="nombre_habilidad" class="form-label">Nombre Habilidad</label>
+                                        <input type="nombre_habilidad" id="nombre_habilidad" name="nombre_habilidad"
+                                            placeholder="Nombre Habilidad" value="" class="form-control input-border"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="grupo" class="form-label">Grupo</label>
+                                        <input type="grupo" id="grupo" name="grupo"
+                                            placeholder="Grupo" value="" class="form-control input-border"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--*****MODAL*******-->
+<div class="modal fade" id="editHabilidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_edit_habilidades" name="form_edit_habilidades" action="habilidades/update" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Habilidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="nombre_habilidad" class="form-label">Nombre Habilidad</label>
+                                        <input type="nombre_habilidad" id="nombre_habilidad" name="nombre_habilidad"
+                                            placeholder="Nombre Habilidad" value="" class="form-control input-border"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="grupo" class="form-label">Grupo</label>
+                                        <input type="grupo" id="grupo" name="grupo"
+                                            placeholder="Grupo" value="" class="form-control input-border"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteHabilidad" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form id="form_delete_habilidades" name="form_delete_habilidades" action="" method="post">
+                <div class="modal-body text-center">
+                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                        este habilidad?
+                    </h5>
+                    <hr>
+                    <h2><b>
+                            <span id="modal-delete-nombre-habilidad"></span>
+                        </b></h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" tabindex="-1" class="btn btn-outline-secondary"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--*****MODAL*******-->
+<div class="modal fade" id="AddHabilidadesPersonas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_create_habilidades_personas" name="form_create_habilidades_personas" action="habilidades_personas/create" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Habilidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="id_persona" class="form-label">Profesional</label>
+                                        <select id="id_persona" name="id_persona" class="form-control input-border">
+                                            <?php foreach($personas as $p): ?>
+                                            <option value="<?= $p['id_persona'] ?>" ><?= $p['nombre_razonsocial'] ?> <?= $p['apellidos'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="id_habilidad" class="form-label">Habilidad</label>
+                                        <select id="id_habilidad" name="id_habilidad" class="form-control input-border">
+                                            <?php foreach($habilidades as $h): ?>
+                                            <option value="<?= $h['id_habilidad'] ?>" ><?= $h['nombre_habilidad'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="nivel" class="form-label">Profesional</label>
+                                        <select id="nivel" name="nivel" class="form-control input-border">
+                                            <?php 
+                                            $niveles = array(0=>"N/A", 1=>"Pre-Novato", 2=>"Novato", 3=>"Intermadio", 4=>"Avanzado", 5=>"Experto");
+                                            foreach($niveles as $n=>$val): ?>
+                                            <option value="<?= $n ?>" ><?= $n ?> - <?= $val ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--*****MODAL*******-->
+<div class="modal fade" id="editHabilidadPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_edit_habilidades_personas" name="form_edit_habilidades_personas" action="habilidades_personas/update" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Habilidad Persona</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="id_persona" class="form-label">Profesional</label>
+                                        <select id="id_persona" name="id_persona" class="form-control input-border" disabled>
+                                            <?php foreach($personas as $p): ?>
+                                            <option value="<?= $p['id_persona'] ?>" ><?= $p['nombre_razonsocial'] ?> <?= $p['apellidos'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="id_habilidad" class="form-label">Habilidad</label>
+                                        <select id="id_habilidad" name="id_habilidad" class="form-control input-border" disabled>
+                                            <?php foreach($habilidades as $h): ?>
+                                            <option value="<?= $h['id_habilidad'] ?>" ><?= $h['nombre_habilidad'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mr-2">
+                                        <label for="nivel" class="form-label">Profesional</label>
+                                        <select id="nivel" name="nivel" class="form-control input-border">
+                                            <?php 
+                                            $niveles = array(0=>"N/A", 1=>"Pre-Novato", 2=>"Novato", 3=>"Intermadio", 4=>"Avanzado", 5=>"Experto");
+                                            foreach($niveles as $n=>$val): ?>
+                                            <option value="<?= $n ?>" ><?= $n ?> - <?= $val ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success ">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteHabilidadPersona" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form id="form_delete_habilidades_personas" name="form_delete_habilidades_personas" action="" method="post">
+                <div class="modal-body text-center">
+                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar
+                        esta relación habilidad persona?
+                    </h5>
+                    <hr>
+                    <h2><b>
+                            <span id="modal-delete-nombre-habilidad"></span>
+                        </b></h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" tabindex="-1" class="btn btn-outline-secondary"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

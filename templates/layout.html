@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <title>Portal Busco Talento TI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+
+    <meta name="robots" content="noindex, follow">
+
+    <?php
+        if (!isset($_SESSION['usuario']) || session_status() === PHP_SESSION_NONE) {
+            die('No hay sesion');
+        }else{
+            //print("<pre>".print_r($_SESSION['matches'],true)."</pre><br>");
+    
+        //obtener variables principales a utilizar
+        $id_usuario = $_SESSION['usuario'][0]['id_usuario'];
+        $id_persona = $_SESSION['persona'][0]['id_persona'];
+        $nombre = $_SESSION['persona'][0]['nombre_razonsocial'].' '.$_SESSION['persona'][0]['apellidos'];
+        $id_tipo_persona = $_SESSION['persona'][0]['id_tipo_persona'];
+        } 
+    ?>
+
+    <base href="/talento-ti/"/>
+</head>
+<body class="bg_light">
+    <main>  
+        <div class="wrapper d-flex align-items-stretch">
+            <?php 
+                include "templates/menu.html" 
+            ?>
+            <div id="content" class="p-4 p-md-5 pt-5">
+            <?php 
+                include "templates/header.html";
+                include 'templates/'.$template.'.html';
+            ?> 
+            </div>
+        </div>
+        <!--************************
+        FIN CONTENIDO DEL INFORME
+    *****************************-->
+    </main>
+    <!--*SCRIPT*-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/localization/messages_es.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;68f2281d9ad02df4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;si&quot;:10}"></script> -->
+    <?php include "templates/footer.html" ?>
+    <?php 
+    if($template == 'datosPersona'){
+        echo "<script type=\"text/javascript\">";
+        echo "
+        window.addEventListener(\"load\", function(){
+            $(\"#regiones\").val('$region').change();
+            $(\"#comunas\").val('$comuna').change();
+        });
+        ";
+        echo "</script>";
+    } 
+    ?>
+</body>
+</html>

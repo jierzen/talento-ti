@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="K7">
+    <title>Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <!-- <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180">
+        <link rel="icon" href="img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+        <link rel="manifest" href="img/favicons/manifest.json">
+        <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#7952b3">
+        <link rel="icon" href="img/favicons/favicon.ico"> -->
+
+    <!-- vendor css -->
+    <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style-pa.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar-dark bg-code">
+        <div class="container pt-2 pb-2">
+            <div class="d-flex justify-content-between">
+                <div>
+                </div>
+                <div>
+                    <a class="btn btn-sm btn-outline-light m-2" aria-current="page" href="logout">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="pt-5">
+            <h2 class="txt-28">Bienvenido <br><b>
+
+                </b></h2>
+            <a href="#" class="" data-bs-toggle="modal" data-bs-target="#editModal">Nuevo</a>
+            <hr>
+            <?php foreach($solicitudes as $sol): ?>
+            <div class="users-list d-flex justify-content-between align-items-center mb-3">
+                <div class="users-id">
+                    <a href="solicitudes/read/<?= $sol['id_solicitud'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#editModal<?= $sol['id_solicitud'] ?>">
+                        <span>
+                            <?= $sol['id_solicitud'] ?>
+                        </span>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $sol['id_oferta'] ?>
+                    </span>
+                    <p></p>
+                </div>
+                <div class="users-email">
+                    <span>
+                        <?= $sol['id_persona_prof'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="users-email">
+                    <span>
+                        <?= $sol['id_persona_emp'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="users-email">
+                    <span>
+                        <?= $sol['id_estado'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="users-email">
+                    <span>
+                        <?= $sol['fecha_solicitud'] ?>
+                    </span>
+                    <p></p>
+                </div>
+
+                <div class="device-delete">
+                    <a href="solicitudes/read/<?= $sol['id_solicitud'] ?>" class="" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<?= $sol['id_solicitud'] ?>">
+                        Delete <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+                <form action="solicitudes/delete/<?= $sol['id_solicitud'] ?>" method="post">
+                    <div class="modal fade" id="deleteModal<?= $sol['id_solicitud'] ?>" tabindex="-1"
+                        aria-labelledby="deleteLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar esta
+                                        solicitud?
+                                    </h5>
+                                    <hr>
+                                    <h1><b>
+                                            <?= $sol['id_solicitud'] ?>
+                                        </b></h1>
+                                    <hr>
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal fade" id="editModal<?= $sol['id_solicitud'] ?>" tabindex="-1"
+                    aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form id="form_solicitud_<?= $sol['id_solicitud'] ?>" name="form_solicitud_<?= $sol['id_solicitud'] ?>"
+                            action="solicitudes/update/<?= $sol['id_solicitud'] ?>" method="post">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Editar solicitud</h5>
+                                    <hr>
+
+                                    <input type="datetime" id="fecha_solicitud" name="fecha_solicitud" placeholder="<?php echo date('d-m-Y h:i:sa'); ?>"
+                                        value="<?= $sol['fecha_solicitud'] ?>" class="form-control form-control-lg">
+
+                                </div>
+                                <div class="container">
+                                    <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                        <button type="button" class="btn btn-outline-orange"
+                                            data-bs-dismiss="modal">Volver</button>
+                                        <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+        </div>
+    </main>
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- Modal Desvincular
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">¿Esta seguro que desea desvincular el dispositivo?
+          </h5>
+          <hr>
+          <h1><b>Tv Sony</b></h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-between mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-outline-orange">Si</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+
+    <!-- Modal Crear-->
+    <form action="solicitudes/create" method="post">
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Crear solicitud</h5>
+                        <hr>
+                        <select name="id_oferta" id="id_oferta" class="form-control form-control-lg" required>
+                            <option disabled selected value>Seleccione Oferta...</option>
+                            <?php foreach($id_oferta_linelist as $of): ?>
+                            <option value="<?= $of['id_oferta'] ?>">Oferta ID: <?= $of['id_oferta'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                        <select name="id_persona_prof" id="id_persona_prof" class="form-control form-control-lg" required>
+                            <option disabled selected value>Seleccione Profesional...</option>
+                            <?php foreach($id_prof_linelist as $ppro): ?>
+                            <option value="<?= $ppro['id_persona'] ?>">Persona ID: <?= $ppro['id_persona'] ?> - <?= $ppro['nombre_razonsocial'].' '.$ppro['apellidos'] ?> - <?= $ppro['nombre_habilidad'].' nivel '.$ppro['nivel'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                        <select name="id_persona_emp" id="id_persona_emp" class="form-control form-control-lg" required>
+                            <option disabled selected value>Seleccione Empresa...</option>
+                            <?php foreach($id_perEmp_linelist as $pemp): ?> 
+							<option value="<?= $pemp['id_persona'] ?>">Empresa ID: <?= $pemp['id_persona'] ?> - <?= $pemp['nombre_razonsocial'].' '.$pemp['apellidos'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                        <select name="id_estado" id="id_estado" class="form-control form-control-lg" required>
+                            <option disabled selected value>Seleccione Estado...</option>
+                            <?php foreach($id_estado_linelist as $est): ?>
+                            <option value="<?= $est['id_estado'] ?>">Estado ID: <?= $est['id_estado'] ?> - <?= $est['nombre_estado'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <hr>
+                        <!--MySQL retrieves and displays DATETIME values in 'YYYY-MM-DD hh:mm:ss' in PHP date('Y-m-d h:i:sa') -->
+                        <input type="datetime" id="fecha_solicitud" name="fecha_solicitud"
+                            placeholder="<?php echo date('Y-m-d h:i:sa'); ?>"
+                            value="<?php echo date('Y-m-d h:i:sa'); ?>" class="form-control form-control-lg">
+                    </div>
+                    <div class="container">
+                        <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--MODAL NOTIFICACION OK
+  <div class="modal fade" id="OkModal" tabindex="-1" aria-labelledby="OkModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Proceso de desvincular el dispositivo:</h5>
+          <hr>
+          <i class="fa fa-check fa-5x"></i>
+
+          <h1><b>Tv Sony</b><br>Se realizó con éxito</h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-center mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+    <!--MODAL NOTIFICACION NO
+  <div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="ErrorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Proceso de desvincular el dispositivo:</h5>
+          <hr>
+          <i class="fa fa-exclamation-circle fa-5x"></i>
+
+          <h1><b>Tv Sony</b><br>No se realizó</h1>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="btn-group d-flex justify-content-center mb-3" role="group">
+            <button type="button" class="btn btn-outline-orange" data-bs-dismiss="modal">Volver a Intententarlo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+</body>
+
+</html>

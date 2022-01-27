@@ -1,0 +1,173 @@
+<main class="container">
+    <div class="pt-5">
+        <h2 class="txt-28">Bienvenido <br><b>
+
+            </b></h2>
+        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#editModal">Nuevo</a>
+        <hr>
+        <?php foreach($personas as $per): ?>
+        <div class="users-list d-flex justify-content-between align-items-center mb-3">
+            <div class="users-id">
+                <a href="personas/<?= $per['id_persona'] ?>" class="" data-bs-toggle="modal"
+                    data-bs-target="#editModal<?= $per['id_persona'] ?>">
+                    <span>
+                        <?= $per['id_persona'] ?>
+                    </span>
+                    <p></p>
+                </a>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['nombre_razonsocial'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['apellidos'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['rut'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['direccion'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['comuna'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['ciudad'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['region'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['pais'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['telefono'] ?>
+                </span>
+                <p></p>
+            </div>
+            <div class="users-email">
+                <span>
+                    <?= $per['email'] ?>
+                </span>
+                <p></p>
+            </div>
+
+            <div class="device-delete">
+                <a href="personas/<?= $per['id_persona'] ?>" class="" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal<?= $per['id_persona'] ?>">
+                    Delete <i class="fa fa-trash-o"></i>
+                </a>
+            </div>
+            <form action="personas/delete/<?= $per['id_persona'] ?>" method="post">
+                <div class="modal fade" id="deleteModal<?= $per['id_persona'] ?>" tabindex="-1"
+                    aria-labelledby="deleteLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <h5 class="modal-title text-center" id="modal">¿Está seguro que desea eliminar esta
+                                    persona?
+                                </h5>
+                                <hr>
+                                <h1><b>
+                                        <?= $per['nombre_razonsocial'].' '.$per['apellidos'] ?>
+                                    </b></h1>
+                                <hr>
+                                <h1><b>
+                                        <?= 'RUT: '.$per['rut'] ?>
+                                    </b></h1>
+                                <hr>
+                            </div>
+                            <div class="container">
+                                <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                    <button type="button" tabindex="-1" class="btn btn-outline-orange"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-outline-orange">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal fade" id="editModal<?= $per['id_persona'] ?>" tabindex="-1"
+                aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form id="form_persona_<?= $per['id_persona'] ?>" name="form_persona_<?= $per['id_persona'] ?>"
+                        action="personas/update/<?= $per['id_persona'] ?>" method="post">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <h5 class="modal-title text-center" id="exampleModalLabel">Editar persona</h5>
+                                <hr>
+                                <!-- <input type="hidden" id="id_persona" name="id_persona" value="<?= $per['id_persona'] ?>"> -->
+                                <hr>
+                                <input type="text" id="nombre_razonsocial" name="nombre_razonsocial"
+                                    placeholder="Nombre o Razon Social" value="<?= $per['nombre_razonsocial'] ?>"
+                                    class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"
+                                    value="<?= $per['apellidos'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="rut" name="rut" placeholder="Rut" value="<?= $per['rut'] ?>"
+                                    class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="direccion" name="direccion" placeholder="Direccion"
+                                    value="<?= $per['direccion'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="comuna" name="comuna" placeholder="Comuna"
+                                    value="<?= $per['comuna'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad"
+                                    value="<?= $per['ciudad'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="region" name="region" placeholder="Region"
+                                    value="<?= $per['region'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="pais" name="pais" placeholder="Pais"
+                                    value="<?= $per['pais'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="telefono" name="telefono" placeholder="+569 12345678"
+                                    value="<?= $per['telefono'] ?>" class="form-control form-control-lg">
+                                <hr>
+                                <input type="text" id="email" name="email" placeholder="correo@ejemplo.com"
+                                    value="<?= $per['email'] ?>" class="form-control form-control-lg">
+                            </div>
+                            <div class="container">
+                                <div class="btn-group d-flex justify-content-between mb-3" role="group">
+                                    <button type="button" class="btn btn-outline-orange"
+                                        data-bs-dismiss="modal">Volver</button>
+                                    <button type="submit" class="btn btn-outline-orange">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+    </div>
+</main>

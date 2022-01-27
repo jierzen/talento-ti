@@ -1,0 +1,136 @@
+<?php 
+//print("<pre>".print_r($_SESSION['habilidades'],true)."</pre><br>");
+?>
+    <hr>
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                  <div class="row mb-4">
+                    <div class="col-md-12">
+                      <h2>Mis Habilidades</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <ol class="list-habilidad">
+                            <?php $aux = 0;
+                            foreach($_SESSION['habilidades'] as $hab){ 
+                              $aux+=1; ?>
+                                <li class="">
+                                    <?php print_r($hab['nombre_habilidad']) ?>
+                                    <span>
+                                        <a href="" data-toggle="modal" data-target="#modalCambiarNivelHab_<?= $aux ?>">L:<?php print_r($hab['nivel']) ?>
+                                        </a>
+                                    </span> 
+                                    <a href="" class="btn btn-sm ml-3" data-toggle="modal" data-target="#modalEliminarHab_<?= $aux ?>">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </li>
+                                <!--modal cambiar nivel habilidad-->
+                                <div class="modal" tabindex="-1" id="modalCambiarNivelHab_<?= $aux ?>">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title">Cambiar nivel de habilidad</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <p>ID = <?php print_r($hab['id_habilidad']) ?></p>
+                                        <p>Habilidad = <?php print_r($hab['nombre_habilidad']) ?></p>
+                                        <p>Nivel = <?php print_r($hab['nivel']) ?></p>
+
+                                      </div>
+                                      <form action="cambiarNivelHabilidad" class="modal-footer" id="formNivel_<?= $aux ?>" method="post">
+                                        <input type="text" name="id_habilidad" value="<?= $hab['id_habilidad'] ?>" hidden>
+                                        <input type="text" name="nivel" value="<?= $hab['nivel'] ?>" hidden>
+                                        <select name="nivelNuevo" form="formNivel_<?= $aux ?>" class="form-control input-border" required>
+                                          <option value="" selected disabled>Seleccione nivel...</option>
+                                          <option value="1">Nivel 1 - Novato</option>
+                                          <option value="2">Nivel 2 - Junior</option>
+                                          <option value="3">Nivel 3 - Semi-Senior</option>
+                                          <option value="4">Nivel 4 - Senior</option>
+                                          <option value="5">Nivel 5 - Experto</option>
+                                        </select>
+                                        <div class="form-control">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Cambiar Nivel</button>
+                                      </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!--modal de eliminar una habilidad adquirida-->
+                                <div class="modal" tabindex="-1" id="modalEliminarHab_<?= $aux ?>">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title">Eliminar Habilidad</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <p>¿Desea eliminar la habilidad <?php print_r($hab['nombre_habilidad']) ?>?</p>
+                                        <p>(ID = <?php print_r($hab['id_habilidad']) ?>)</p>
+                                      </div>
+                                      <form action="eliminarHabilidad" class="modal-footer" id="formEliminar_<?= $aux ?>" method="post">
+                                        <input type="text" name="id_habilidad" value="<?= $hab['id_habilidad'] ?>" hidden>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                            <?php } ?>
+                        </ol>
+                    </div><!--//COL-->
+                  </div><!--//ROW-->
+                </div><!--//CARD-BODY-->
+            </div><!--//CARD-->
+        </div><!--//COL-->
+      </div><!--//ROW-->
+
+    <!--nueva area seleccionar habilidad nueva-->
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                  <div class="row mb-4">
+                    <div class="col-md-12">
+                          <h2>Seleccionar Habilidades</h2>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="input-group mb-3">
+                        <input type="text" id="busca-habilidades" class="form-control input-border" aria-label="Buscador" placeholder="Buscar" aria-describedby="sizing-habilidades">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </div>
+                      </div>
+    
+                      <!--AQUI ESTA LA LISTA PARA LA SELECCION-->
+                      <form action="nuevaHabilidad" method="post" id="seleccionHabilidadesNuevas">
+                      <ul class="radio-toolbar d-flex " id="habilidades">
+                        <?php foreach($_SESSION['habilidades_no_adquiridas'] as $hna){ ?>
+                            <li class="col-sm-12 col-md-4"><input type="checkbox" id="<?= $hna['id_habilidad'] ?>" name="checkbox[]" value="<?= $hna['id_habilidad'] ?>"><label for="<?= $hna['id_habilidad'] ?>"><b><?php print_r($hna['nombre_habilidad']) ?></b><button type="button" class="btn btn-sm" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fa fa-question-circle-o"></i></button></label> </li>
+                        <?php } ?>
+                      </ul>
+                      </form>
+                      <!--.//FIN LISTA-->
+                    </div>
+                    <div class="col-12 text-right"><hr>
+                      
+                      <button type="submit" form="seleccionHabilidadesNuevas" class="btn btn-outline-success p-3 px-5">
+                        Guardar
+                    </button>
+                    </div>
+                  </div>
+                </div><!--//CARD-BODY-->
+            </div><!--//CARD-->
+        </div><!--//COL-->
+    </div><!--//ROW-->
+</div>
+
+
+
+

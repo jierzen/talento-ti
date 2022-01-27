@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6">
+        <ol class="breadcrumb">
+            <?php if(isset($template) && $template != 'principal'){ ?>
+                <li class="breadcrumb-item"><i class="fa fa-home"></i><a href="home">Inicio</a></li>
+                <li class="breadcrumb-item active"><i aria-current="page"><a href="<?= $template ?>"><?php print_r($template) ?></a></i></li>
+            <?php }else{ ?>
+                <li class="breadcrumb-item active"><i class="fa fa-home"></i><a href="home">Inicio</a></li>
+            <?php } ?>
+		  </ol>
+    </div>
+    <div class="col-md-6" id="profile">
+        <div class="d-flex justify-content-end align-items-center">
+            <div class="namecard mr-3">
+                <span class="name">
+                    <?php echo $nombre; ?>
+                </span> 
+                <span class="type">
+                    <?php
+                    $id_tipo_persona == 2 ? print_r('Empresa') : print_r('Profesional');
+                    ?> TI</span>
+            </div><!--//NAME-->
+            <img src="assets/images/profile-v3.jpg" class="align-self-center mr-3 rounded-circle img-profile" alt="...">
+        </div>
+    </div>
+</div>
+ 

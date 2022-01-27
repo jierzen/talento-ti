@@ -1,0 +1,50 @@
+<?php 
+//print("<pre>".print_r($_SESSION['perfil'],true)."</pre><br>"); 
+$id_perfil = $_SESSION['perfil'][0]['id_perfil'];
+$titulo_prof = $_SESSION['perfil'][0]['titulo_prof'];
+$resumen = $_SESSION['perfil'][0]['resumen'];
+$url_cv = $_SESSION['perfil'][0]['url_cv'];
+$disponibilidad = $_SESSION['perfil'][0]['disponibilidad'];
+$id_persona = $_SESSION['perfil'][0]['id_persona'];
+$plazo_proyecto = $_SESSION['perfil'][0]['plazo_proyecto'];
+
+$id_usuario = $_SESSION['usuario'][0]['id_usuario'];
+?>
+<hr>
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-6 ">
+        <h2>Mi Perfil</h2> 
+        <h2><?= $template ?></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit est sed dolor hendrerit malesuada. Vestibulum sem ligula, iaculis in nunc luctus, vulputate faucibus eros. </p> 
+    </div>
+</div>
+<hr>
+<div class="row">
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <hgroup>
+                <h6>CV</h6>
+                <h5><?php print_r($titulo_prof) ?></h5>
+            </hgroup> 
+            <p>URL CV: <a href="#"><?php print_r($url_cv) ?></a></p>
+            <p>Resumen: <?php print_r($resumen) ?></p>
+            <p>Disponibilidad: <?php print_r($disponibilidad) ?></p>
+            <div class="footer-oferta ">
+                <hr>
+                <ul class="d-flex justify-content-end align-items-center">
+                    <li>
+                    <button type="submit" form="editarPerfil" class="btn btn-outline-success btn-sm">Editar</button>
+
+                    </li>
+                    <form action="editar_perfil" id="editarPerfil" method="post">
+                        <input type="text" name="id_perfil" value="<?= $id_perfil ?>" hidden>
+                        <input type="text" name="id_usuario" value="<?= $id_usuario ?>" hidden>
+                        <input type="text" name="id_persona" value="<?= $id_persona ?>" hidden>
+                    </form>
+                </ul>
+            </div>                   
+        </div>
+    </div> 
+</div>
+</div>
